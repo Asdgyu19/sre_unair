@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BlogPost extends Model
 {
     use HasFactory;
+
+    // public static function getAll()
+    // {
+    //     return self::all();
+    // }
 
     protected $fillable = [
         'title',
@@ -39,5 +44,6 @@ class BlogPost extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-}
 
+    protected $table = 'blog_posts';
+}
