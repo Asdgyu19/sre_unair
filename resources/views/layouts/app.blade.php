@@ -218,7 +218,7 @@
     </header>
 
     <!-- Page Content -->
-    <main class="pt-24">
+    <main>
         @yield('content')
     </main>
 
@@ -228,7 +228,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <img class="h-10 w-auto" src="{{ asset('images/logo-white.png') }}" alt="SRE UNAIR Logo">
+                        {{-- <img class="h-10 w-auto" src="{{ asset('assets/images/logo.png') }}" alt="SRE UNAIR Logo"> --}}
                         <div class="ml-3 text-lg font-semibold">SRE <span class="text-[#F0C93D]">UNAIR</span></div>
                     </div>
                     <p class="text-white text-opacity-80 mb-4">
@@ -334,13 +334,13 @@
             // Header scroll effect
             const header = document.getElementById('main-header');
             
-            function handleScroll() {
-                if (window.scrollY > 10) {
-                    header.classList.add('shadow-md');
-                } else {
-                    header.classList.remove('shadow-md');
-                }
-            }
+            // function handleScroll() {
+            //     if (window.scrollY > 10) {
+            //         header.classList.add('shadow-md');
+            //     } else {
+            //         header.classList.remove('shadow-md');
+            //     }
+            // }
             
             // Set initial state
             handleScroll();
