@@ -111,6 +111,7 @@
             <!-- User will add their own photo -->
             <div class="absolute inset-0 flex items-center justify-center text-gray-500">
               <p>Vice President Photo</p>
+              <p class="text-gray-600 mb-4">Name will be added</p>
             </div>
           </div>
           <div class="p-6 text-center">

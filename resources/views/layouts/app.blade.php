@@ -13,9 +13,9 @@
     <!-- Scripts -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Motion.js for animations -->
-<script src="https://unpkg.com/motion/dist/motion.js"></script>
-<!-- Your merchandise marquee script -->
-<script src="{{ asset('js/merchandise-marquee.js') }}"></script>
+    <script src="https://unpkg.com/motion/dist/motion.js"></script>
+    <!-- Your merchandise marquee script -->
+    <script src="{{ asset('js/merchandise-marquee.js') }}"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -53,94 +53,172 @@
                 opacity: 0.8;
             }
         }
+        /* Oval header styles */
+        .oval-header {
+            border-radius: 9999px;
+            padding: 0.5rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-item {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s;
+        }
+        .nav-item:hover {
+            color: #0E9671;
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #0E9671;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-item:hover::after {
+            width: 70%;
+        }
+        .auth-button {
+            border-radius: 9999px;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .login-button {
+            color: #0E9671;
+            border: 1px solid #0E9671;
+        }
+        .login-button:hover {
+            background-color: rgba(14, 150, 113, 0.1);
+        }
+        .register-button {
+            background-color: #0E9671;
+            color: white;
+        }
+        .register-button:hover {
+            background-color: #0c8566;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Mobile menu styles */
+        .mobile-menu {
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="antialiased bg-gray-50">
-    <!-- Header/Navigation -->
-    <header class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
+    <!-- Improved Oval Header/Navigation -->
+    <header class="fixed w-full z-50 transition-all duration-300 py-3" id="main-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center">
-                        <img class="h-10 w-auto" src="{{ asset('/assets/images/logo.png') }}" alt="SRE UNAIR Logo">
-                        <div class="ml-3 text-lg font-semibold text-[#0E9671]">SRE UNAIR</div>
-                    </a>
-                </div>
-                <nav class="hidden md:ml-6 md:flex md:space-x-8 items-center">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Home</a>
-                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">About</a>
-                    <a href="{{ route('projects') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Projects</a>
-                    <a href="{{ route('events') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Events</a>
-                    <a href="{{ route('education') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Education</a>
-                    <a href="{{ route('blog') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Blog</a>
-                    <a href="{{ route('merchandise') }}" class="text-gray-700 hover:text-[#0E9671] px-3 py-2 text-sm font-medium transition duration-150 ease-in-out">Merchandise</a>
+            <div class="oval-header flex justify-between items-center">
+                <!-- Logo -->
+                <a href="{{ route('home') }}" class="flex items-center group">
+                    <img class="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
+                         src="{{ asset('/assets/images/logo.png') }}" 
+                         alt="SRE UNAIR Logo">
+                    <div class="ml-3">
+                        <span class="text-xl font-bold text-[#0E9671] tracking-tight">SRE</span>
+                        <span class="text-sm font-medium text-gray-600 block -mt-1">UNAIR</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-1">
+                    <a href="{{ route('home') }}" class="nav-item text-sm font-medium text-gray-700">Home</a>
+                    <a href="{{ route('about') }}" class="nav-item text-sm font-medium text-gray-700">About</a>
+                    <a href="{{ route('projects') }}" class="nav-item text-sm font-medium text-gray-700">Projects</a>
+                    <a href="{{ route('events') }}" class="nav-item text-sm font-medium text-gray-700">Events</a>
+                    <a href="{{ route('education') }}" class="nav-item text-sm font-medium text-gray-700">Education</a>
+                    <a href="{{ route('blog') }}" class="nav-item text-sm font-medium text-gray-700">Blog</a>
+                    <a href="{{ route('merchandise') }}" class="nav-item text-sm font-medium text-gray-700">Merchandise</a>
                     
                     @if (Route::has('login'))
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#0E9671] hover:bg-[#0c8566] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0E9671] transition duration-150 ease-in-out">
-                                Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-[#0E9671] bg-white hover:bg-[#0E9671] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0E9671] transition duration-150 ease-in-out">
-                                Log in
-                            </a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#0E9671] hover:bg-[#0c8566] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0E9671] transition duration-150 ease-in-out">
-                                    Register
+                        <div class="ml-4 flex items-center space-x-3">
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class="auth-button register-button text-sm font-medium">
+                                    Dashboard
                                 </a>
-                            @endif
-                        @endauth
+                            @else
+                                <a href="{{ route('login') }}" class="auth-button login-button text-sm font-medium">
+                                    Log in
+                                </a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="auth-button register-button text-sm font-medium">
+                                        Register
+                                    </a>
+                                @endif
+                            @endauth
+                        </div>
                     @endif
                 </nav>
+
+                <!-- Mobile Menu Button -->
                 <div class="flex items-center md:hidden">
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0E9671]" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button" id="mobile-menu-button" class="p-2 rounded-full text-gray-500 hover:text-[#0E9671] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0E9671]" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div class="md:hidden" id="mobile-menu">
-            <div class="pt-2 pb-3 space-y-1">
-                <a href="{{ route('home') }}" class="block px-3 py-2 text-base font-medium text-[#0E9671] border-l-4 border-[#0E9671]">Home</a>
-                <a href="{{ route('about') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">About</a>
-                <a href="{{ route('projects') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">Projects</a>
-                <a href="{{ route('events') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">Events</a>
-                <a href="{{ route('education') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">Education</a>
-                <a href="{{ route('blog') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">Blog</a>
-                <a href="{{ route('merchandise') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50 hover:border-[#0E9671] border-l-4 border-transparent">Merchandise</a>
-            </div>
-            <div class="pt-4 pb-3 border-t border-gray-200">
-                @if (Route::has('login'))
-                    <div class="flex items-center px-4">
-                        @auth
-                            <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}">
-                            </div>
-                            <div class="ml-3">
-                                <div class="text-base font-medium text-gray-800">{{ auth()->user()->name }}</div>
-                                <div class="text-sm font-medium text-gray-500">{{ auth()->user()->email }}</div>
-                            </div>
-                        @else
-                            <div class="mt-3 space-y-1">
-                                <a href="{{ route('login') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50">Log in</a>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden transition-all duration-300 ease-in-out mt-3 px-4" id="mobile-menu">
+            <div class="mobile-menu bg-white/95 backdrop-blur-md shadow-md pt-2 pb-3 space-y-1">
+                <a href="{{ route('home') }}" class="block px-4 py-2 text-base font-medium text-[#0E9671] rounded-lg bg-[#0E9671]/10">Home</a>
+                <a href="{{ route('about') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">About</a>
+                <a href="{{ route('projects') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Projects</a>
+                <a href="{{ route('events') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Events</a>
+                <a href="{{ route('education') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Education</a>
+                <a href="{{ route('blog') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Blog</a>
+                <a href="{{ route('merchandise') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Merchandise</a>
+            
+                <div class="pt-4 mt-2 border-t border-gray-200">
+                    @if (Route::has('login'))
+                        <div class="flex flex-col space-y-3 px-4 py-2">
+                            @auth
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}">
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="text-base font-medium text-gray-800">{{ auth()->user()->name }}</div>
+                                        <div class="text-sm font-medium text-gray-500">{{ auth()->user()->email }}</div>
+                                    </div>
+                                </div>
+                                <a href="{{ url('/dashboard') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-white bg-[#0E9671] rounded-lg hover:bg-[#0c8566] shadow-md transition-all duration-300">
+                                    Dashboard
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-[#0E9671] border border-[#0E9671] rounded-lg hover:bg-[#0E9671]/10 transition-colors duration-300">
+                                    Log in
+                                </a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-gray-50">Register</a>
+                                    <a href="{{ route('register') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-white bg-[#0E9671] rounded-lg hover:bg-[#0c8566] shadow-md transition-all duration-300">
+                                        Register
+                                    </a>
                                 @endif
-                            </div>
-                        @endauth
-                    </div>
-                @endif
+                            @endauth
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Page Content -->
-    <main class="pt-16">
+    <main class="pt-24">
         @yield('content')
     </main>
 
@@ -235,5 +313,41 @@
 
     <!-- Back to top button -->
     @include('components.back-to-top')
+
+    <!-- JavaScript for header functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    menuIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                });
+            }
+            
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            
+            function handleScroll() {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            }
+            
+            // Set initial state
+            handleScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+        });
+    </script>
 </body>
 </html>
