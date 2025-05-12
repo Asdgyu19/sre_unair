@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\BlogPost;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,8 +26,12 @@ Route::get('/education', function () {
 })->name('education');
 
 Route::get('/blog', function () {
-    return view('blog');
+    return view('blog', ['title' => 'Blog', 'posts' => BlogPost::all()]);
 })->name('blog');
+
+Route::get('/posts/{post:slug}', function (BlogPost $post) {
+    return view('post', ['title' => 'Single Post','post' => $post]);
+});
 
 Route::get('/merchandise', function () {
     return view('merchandise');
