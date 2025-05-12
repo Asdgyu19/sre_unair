@@ -12,6 +12,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Scripts -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Motion.js for animations -->
+<script src="https://unpkg.com/motion/dist/motion.js"></script>
+<!-- Your merchandise marquee script -->
+<script src="{{ asset('js/merchandise-marquee.js') }}"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
