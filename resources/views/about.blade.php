@@ -1,80 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="w-full bg-gradient-to-b from-white to-green-50 py-16">
-  <div class="container mx-auto px-4">
+<section class="w-full bg-gradient-to-b from-[#045947] via-[#0b9174] to-[#e6f7f2] py-20 text-white">
+  <div class="container mx-auto px-4 lg:px-20">
     <!-- About Us Header -->
-    <div class="mb-12 text-center">
-      <h2 class="text-4xl font-bold text-green-700 mb-4">About Us</h2>
-      <div class="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
-      <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Universitas Airlangga's Society of Renewable Energy (SRE UNAIR) is a student organization dedicated to
-        promoting sustainable energy solutions and environmental awareness. We strive to educate, innovate, and
-        inspire the next generation of renewable energy leaders.
+    <div class="mb-16 text-center">
+      <h2 class="text-5xl font-bold mb-6">About Us</h2>
+      <div class="w-28 h-1 bg-white mx-auto mb-8"></div>
+      <p class="text-lg max-w-4xl mx-auto leading-relaxed text-gray-200">
+        Universitas Airlangga's Society of Renewable Energy (SRE UNAIR) is a student organization dedicated to promoting sustainable energy solutions and environmental awareness. We strive to educate, innovate, and inspire the next generation of renewable energy leaders.
       </p>
     </div>
 
     <!-- Vision & Mission -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+    <div class="bg-white rounded-2xl shadow-lg py-16 px-8 lg:px-20 text-black">
       <!-- Vision -->
-      <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-green-500">
-        <h3 class="text-2xl font-bold text-green-700 mb-4">OUR VISION</h3>
-        <p class="text-gray-600 text-lg">
-          Our vision is to establish the Society of Renewable Energy (SRE) UNAIR as a
-          center for education and innovation in the field of Renewable Energy,
-          equipping young generations to be competent, competitive, and impactful
-          contributors to sustainable development in Indonesia.
+      <div class="text-center mb-20">
+        <h2 class="text-4xl font-bold text-green-700 mb-6">VISION</h2>
+        <p class="text-xl text-gray-600">
+          Establish SRE UNAIR as a center for education and innovation in renewable energy, creating a generation of competent, competitive, and impactful contributors to sustainable development in Indonesia.
         </p>
       </div>
-
+      
       <!-- Mission -->
-      <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-green-500">
-        <h3 class="text-2xl font-bold text-green-700 mb-4">OUR MISSION</h3>
-        
-        <div class="space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="bg-green-700 text-white rounded-full min-w-16 h-16 flex items-center justify-center flex-shrink-0">
-              <span class="font-bold">ACTION</span>
+      <div>
+        <h2 class="text-4xl font-bold text-green-700 text-center mb-12">MISSION</h2>
+        <div class="grid gap-12 lg:grid-cols-2">
+          <div class="flex items-start gap-6">
+            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+              </svg>
             </div>
-            <p class="text-gray-600">
-              Empower members to become change agents in renewable energy through innovative education and
-              training programs.
+            <p class="text-lg text-gray-600">
+              Empower members to become change agents in renewable energy through innovative education and training programs.
             </p>
           </div>
-
-          <div class="flex items-start gap-4">
-            <div class="bg-green-700 text-white rounded-full min-w-16 h-16 flex items-center justify-center flex-shrink-0">
-              <span class="font-bold text-xs">OPPORTUNITY</span>
+          <div class="flex items-start gap-6">
+            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+              </svg>
             </div>
-            <p class="text-gray-600">
-              Offer opportunities for members to engage in research and innovation, allowing them to contribute
-              solutions that benefit society.
+            <p class="text-lg text-gray-600">
+              Offer opportunities for members to engage in research and innovation, contributing impactful solutions for society.
             </p>
           </div>
-
-          <div class="flex items-start gap-4">
-            <div class="bg-green-700 text-white rounded-full min-w-16 h-16 flex items-center justify-center flex-shrink-0">
-              <span class="font-bold text-xs">KNOWLEDGE</span>
+          <div class="flex items-start gap-6">
+            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+              </svg>
             </div>
-            <p class="text-gray-600">
-              Foster members' growth with a hands-on, relevant curriculum, enabling them to understand and teach
-              renewable energy concepts effectively.
+            <p class="text-lg text-gray-600">
+              Foster members' growth with a hands-on curriculum, equipping them to understand and teach renewable energy concepts effectively.
             </p>
           </div>
-
-          <div class="flex items-start gap-4">
-            <div class="bg-green-700 text-white rounded-full min-w-16 h-16 flex items-center justify-center flex-shrink-0">
-              <span class="font-bold text-xs">NETWORKING</span>
+          <div class="flex items-start gap-6">
+            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+              </svg>
             </div>
-            <p class="text-gray-600">
-              Apply knowledge and skills through community service and educational programs, raising awareness about
-              renewable energy.
+            <p class="text-lg text-gray-600">
+              Apply knowledge and skills through community service and educational programs, raising awareness about renewable energy.
             </p>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
+</section>
     <!-- Leadership Section -->
     <div class="mb-20">
       <h3 class="text-3xl font-bold text-green-700 text-center mb-12">Our Leadership</h3>
