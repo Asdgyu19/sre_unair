@@ -21,13 +21,13 @@
                         <div
                             class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-5">
                             <!-- Register Button - background putih, dengan hover effect -->
-                            <a href="#"
+                            <a href="/register"
                                 class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold rounded-full text-[#0E9671] bg-white hover:bg-[#f3f3f3] shadow-md hover:shadow-lg transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out">
                                 Register
                             </a>
 
                             <!-- Login Button - hanya stroke, hover ada fill -->
-                            <a href="#"
+                            <a href="/login"
                                 class="inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold rounded-full text-[#0E9671] border-2 border-[#0E9671] bg-transparent hover:bg-[#0E9671] hover:text-[#ffffff] shadow-md hover:shadow-lg transform hover:-translate-y-1 hover:scale-105 transition duration-300 ease-in-out">
                                 Login
                             </a>

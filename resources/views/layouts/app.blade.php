@@ -138,7 +138,7 @@
                     <a href="{{ route('blog') }}" class="nav-item text-sm font-medium text-gray-700">Blog</a>
                     <a href="{{ route('merchandise') }}" class="nav-item text-sm font-medium text-gray-700">Merchandise</a>
                     
-                    @if (Route::has('login'))
+                    {{-- @if (Route::has('login'))
                         <div class="ml-4 flex items-center space-x-3">
                             @auth
                                 <a href="{{ url('/dashboard') }}" class="auth-button register-button text-sm font-medium">
@@ -155,7 +155,7 @@
                                 @endif
                             @endauth
                         </div>
-                    @endif
+                    @endif --}}
                 </nav>
 
                 <!-- Mobile Menu Button -->
@@ -184,7 +184,7 @@
                 <a href="{{ route('blog') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Blog</a>
                 <a href="{{ route('merchandise') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Merchandise</a>
             
-                <div class="pt-4 mt-2 border-t border-gray-200">
+                {{-- <div class="pt-4 mt-2 border-t border-gray-200">
                     @if (Route::has('login'))
                         <div class="flex flex-col space-y-3 px-4 py-2">
                             @auth
@@ -212,7 +212,7 @@
                             @endauth
                         </div>
                     @endif
-                </div>
+                </div> --}}
             </div>
         </div>
     </header>

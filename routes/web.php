@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\BlogPost;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,9 @@ Route::get('/posts/{post:slug}', function (BlogPost $post) {
 Route::get('/merchandise', function () {
     return view('merchandise');
 })->name('merchandise');
+
+Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('register.form');
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login.form');
+
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
