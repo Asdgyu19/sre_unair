@@ -13,26 +13,19 @@ class Merchandise extends Model
         'name',
         'description',
         'price',
+        'category',
+        'image',
         'stock',
-        'featured_image',
-        'gallery',
-        'status',
-        'user_id',
+        'status'
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
-        'gallery' => 'array',
+        'stock' => 'integer'
     ];
 
-    public function user()
+    public function getFormattedPriceAttribute()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
+        return '$' . number_format($this->price, 2);
     }
 }
-

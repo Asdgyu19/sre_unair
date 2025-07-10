@@ -83,7 +83,7 @@ class UserController
                 return redirect()->route('boend.dashboard')->with('success', 'Login berhasil! Selamat datang.');
             case 'user':
             default:
-                return redirect()->route('user.dashboard')->with('success', 'Login berhasil!');
+                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');
         }
     }
 

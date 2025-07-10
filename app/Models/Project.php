@@ -12,27 +12,21 @@ class Project extends Model
     protected $fillable = [
         'title',
         'description',
-        'start_date',
-        'end_date',
+        'category',
         'status',
-        'featured_image',
-        'gallery',
-        'team_members',
-        'technologies',
-        'user_id',
+        'image',
+        'slug',
+        'start_date',
+        'end_date'
     ];
 
     protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'gallery' => 'array',
-        'team_members' => 'array',
-        'technologies' => 'array',
+        'start_date' => 'date',
+        'end_date' => 'date'
     ];
 
-    public function user()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(User::class);
+        return 'slug';
     }
 }
-

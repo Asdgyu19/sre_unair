@@ -2,48 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class BlogPost extends Model
 {
     use HasFactory;
 
-    // public static function getAll()
-    // {
-    //     return self::all();
-    // }
-
     protected $fillable = [
         'title',
-        'slug',
         'content',
-        'featured_image',
         'excerpt',
+        'slug',
+        'featured_image',
         'status',
-        'published_at',
-        'user_id',
-        'category_id',
+        'author_id',
+        'published_at'
     ];
 
     protected $casts = [
-        'published_at' => 'datetime',
+        'published_at' => 'datetime'
     ];
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function category()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(Category::class);
+        return 'slug';
     }
 
-    public function tags()
+    public function scopePublished($query)
     {
-        return $this->belongsToMany(Tag::class);
+        return $query->where('status', 'published')->whereNotNull('published_at');
     }
-
-    protected $table = 'blog_posts';
 }

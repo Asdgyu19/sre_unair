@@ -12,23 +12,24 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'start_date',
-        'end_date',
+        'date',
+        'time',
         'location',
-        'featured_image',
-        'status',
-        'registration_link',
-        'user_id',
+        'image',
+        'status'
     ];
 
     protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
+        'date' => 'date',
     ];
 
-    public function user()
+    public function getFormattedDateAttribute()
     {
-        return $this->belongsTo(User::class);
+        return $this->date->format('F j, Y');
+    }
+
+    public function getFormattedTimeAttribute()
+    {
+        return date('g:i A', strtotime($this->time));
     }
 }
-
