@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 <div class="min-h-screen bg-gray-100">
     <!-- Header -->
     <header class="bg-white shadow-sm border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-15">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-6">
                 <div class="flex items-center">
-                    <!-- <img src="{{ asset('/assets/images/logo.png') }}" alt="SRE UNAIR" class="h-10 w-10 mr-3"> -->
                     <h1 class="text-2xl font-bold text-gray-900">SRE UNAIR Admin Dashboard</h1>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -26,6 +23,13 @@
     </header>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div class="bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-blue-500">
@@ -40,6 +44,11 @@
                                 <dd class="text-2xl font-bold text-gray-900">{{ $eventsCount }}</dd>
                             </dl>
                         </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{{ route('admin.events.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            View all events →
+                        </a>
                     </div>
                 </div>
             </div>
@@ -57,6 +66,11 @@
                             </dl>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <a href="{{ route('admin.merchandise.index') }}" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                            View all items →
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -72,6 +86,11 @@
                                 <dd class="text-2xl font-bold text-gray-900">{{ $projectsCount }}</dd>
                             </dl>
                         </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="{{ route('admin.projects.index') }}" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium">
+                            View all projects →
+                        </a>
                     </div>
                 </div>
             </div>
@@ -89,6 +108,11 @@
                             </dl>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <a href="{{ route('admin.blog.index') }}" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                            View all posts →
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,16 +120,15 @@
         <!-- Management Sections -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Events Management -->
-            <!-- Events Management -->
             <div class="bg-white shadow-lg rounded-lg">
                 <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-blue-500 to-blue-600">
                     <div class="flex justify-between items-center">
                         <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fas fa-calendar-alt mr-2"></i>Events Management
+                            <i class="fas fa-calendar-alt mr-2"></i>Recent Events
                         </h2>
-                        <button onclick="openModal('eventModal')" class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md font-medium transition-colors">
+                        <a href="{{ route('admin.events.create') }}" class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md font-medium transition-colors">
                             <i class="fas fa-plus mr-2"></i>Add Event
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="p-6">
@@ -123,9 +146,9 @@
                                 </p>
                             </div>
                             <div class="flex space-x-2 ml-4">
-                                <button onclick="editEvent({{ $event->id }})" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
+                                <a href="{{ route('admin.events.edit', $event->id) }}" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
                                     <i class="fas fa-edit"></i>
-                                </button>
+                                </a>
                                 <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus event ini?')">
                                     @csrf
                                     @method('DELETE')
@@ -138,10 +161,20 @@
                         @empty
                         <div class="text-center py-8">
                             <i class="fas fa-calendar-times text-gray-400 text-4xl mb-4"></i>
-                            <p class="text-gray-500">No events found</p>
+                            <p class="text-gray-500 mb-4">No events found</p>
+                            <a href="{{ route('admin.events.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">
+                                Create First Event
+                            </a>
                         </div>
                         @endforelse
                     </div>
+                    @if($recentEvents->count() > 0)
+                    <div class="mt-4 text-center">
+                        <a href="{{ route('admin.events.index') }}" class="text-blue-600 hover:text-blue-800 font-medium">
+                            View All Events →
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -150,11 +183,11 @@
                 <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-green-500 to-green-600">
                     <div class="flex justify-between items-center">
                         <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fas fa-tshirt mr-2"></i>Merchandise Management
+                            <i class="fas fa-tshirt mr-2"></i>Recent Merchandise
                         </h2>
-                        <button onclick="openModal('merchandiseModal')" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-md font-medium transition-colors">
+                        <a href="{{ route('admin.merchandise.create') }}" class="bg-white text-green-600 hover:bg-green-50 px-4 py-2 rounded-md font-medium transition-colors">
                             <i class="fas fa-plus mr-2"></i>Add Item
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="p-6">
@@ -163,7 +196,7 @@
                         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                             <div class="flex items-center flex-1">
                                 @if($item->image)
-                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="w-16 h-16 object-cover rounded-lg mr-4">
                                 @else
                                 <div class="w-16 h-16 bg-gray-300 rounded-lg mr-4 flex items-center justify-center">
                                     <i class="fas fa-image text-gray-500"></i>
@@ -172,25 +205,39 @@
                                 <div>
                                     <h3 class="font-semibold text-gray-900">{{ $item->name }}</h3>
                                     <p class="text-sm text-gray-600">${{ number_format($item->price, 2) }}</p>
-                                    <p class="text-xs text-gray-500">{{ $item->category }}</p>
+                                    <p class="text-xs text-gray-500">{{ $item->category }} • Stock: {{ $item->stock }}</p>
                                 </div>
                             </div>
                             <div class="flex space-x-2 ml-4">
-                                <button onclick="editMerchandise({{ $item->id }})" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
+                                <a href="{{ route('admin.merchandise.edit', $item->id) }}" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
                                     <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="deleteMerchandise({{ $item->id }})" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                </a>
+                                <form action="{{ route('admin.merchandise.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus item ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         @empty
                         <div class="text-center py-8">
                             <i class="fas fa-shopping-bag text-gray-400 text-4xl mb-4"></i>
-                            <p class="text-gray-500">No merchandise found</p>
+                            <p class="text-gray-500 mb-4">No merchandise found</p>
+                            <a href="{{ route('admin.merchandise.create') }}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors">
+                                Add First Item
+                            </a>
                         </div>
                         @endforelse
                     </div>
+                    @if($recentMerchandise->count() > 0)
+                    <div class="mt-4 text-center">
+                        <a href="{{ route('admin.merchandise.index') }}" class="text-green-600 hover:text-green-800 font-medium">
+                            View All Items →
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -199,11 +246,11 @@
                 <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-yellow-500 to-yellow-600">
                     <div class="flex justify-between items-center">
                         <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fas fa-project-diagram mr-2"></i>Projects Management
+                            <i class="fas fa-project-diagram mr-2"></i>Recent Projects
                         </h2>
-                        <button onclick="openModal('projectModal')" class="bg-white text-yellow-600 hover:bg-yellow-50 px-4 py-2 rounded-md font-medium transition-colors">
+                        <a href="{{ route('admin.projects.create') }}" class="bg-white text-yellow-600 hover:bg-yellow-50 px-4 py-2 rounded-md font-medium transition-colors">
                             <i class="fas fa-plus mr-2"></i>Add Project
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="p-6">
@@ -213,29 +260,46 @@
                             <div class="flex-1">
                                 <h3 class="font-semibold text-gray-900">{{ $project->title }}</h3>
                                 <p class="text-sm text-gray-600 mt-1">{{ $project->category }}</p>
-                                <span class="inline-block px-2 py-1 text-xs font-medium rounded-full 
-                                    @if($project->status == 'completed') bg-green-100 text-green-800
-                                    @elseif($project->status == 'ongoing') bg-blue-100 text-blue-800
-                                    @else bg-yellow-100 text-yellow-800 @endif">
-                                    {{ ucfirst($project->status) }}
-                                </span>
+                                <div class="flex items-center mt-2">
+                                    <span class="inline-block px-2 py-1 text-xs font-medium rounded-full 
+                                        @if($project->status == 'completed') bg-green-100 text-green-800
+                                        @elseif($project->status == 'ongoing') bg-blue-100 text-blue-800
+                                        @elseif($project->status == 'planning') bg-yellow-100 text-yellow-800
+                                        @else bg-red-100 text-red-800 @endif">
+                                        {{ ucfirst($project->status) }}
+                                    </span>
+                                </div>
                             </div>
                             <div class="flex space-x-2 ml-4">
-                                <button onclick="editProject({{ $project->id }})" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
+                                <a href="{{ route('admin.projects.edit', $project->id) }}" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
                                     <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="deleteProject({{ $project->id }})" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                </a>
+                                <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus project ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         @empty
                         <div class="text-center py-8">
                             <i class="fas fa-project-diagram text-gray-400 text-4xl mb-4"></i>
-                            <p class="text-gray-500">No projects found</p>
+                            <p class="text-gray-500 mb-4">No projects found</p>
+                            <a href="{{ route('admin.projects.create') }}" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md transition-colors">
+                                Create First Project
+                            </a>
                         </div>
                         @endforelse
                     </div>
+                    @if($recentProjects->count() > 0)
+                    <div class="mt-4 text-center">
+                        <a href="{{ route('admin.projects.index') }}" class="text-yellow-600 hover:text-yellow-800 font-medium">
+                            View All Projects →
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -244,11 +308,11 @@
                 <div class="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-purple-500 to-purple-600">
                     <div class="flex justify-between items-center">
                         <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fas fa-blog mr-2"></i>Blog Management
+                            <i class="fas fa-blog mr-2"></i>Recent Blog Posts
                         </h2>
-                        <button onclick="openModal('blogModal')" class="bg-white text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-md font-medium transition-colors">
+                        <a href="{{ route('admin.blog.create') }}" class="bg-white text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-md font-medium transition-colors">
                             <i class="fas fa-plus mr-2"></i>Add Post
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="p-6">
@@ -258,146 +322,52 @@
                             <div class="flex-1">
                                 <h3 class="font-semibold text-gray-900">{{ $post->title }}</h3>
                                 <p class="text-sm text-gray-600 mt-1">
-                                    <i class="fas fa-calendar mr-1"></i>{{ $post->published_at ? $post->published_at->format('M d, Y') : 'Draft' }}
+                                    <i class="fas fa-user mr-1"></i>{{ $post->user->name }}
+                                    <i class="fas fa-calendar ml-3 mr-1"></i>{{ $post->published_at ? $post->published_at->format('M d, Y') : 'Draft' }}
                                 </p>
-                                <span class="inline-block px-2 py-1 text-xs font-medium rounded-full 
+                                <span class="inline-block px-2 py-1 text-xs font-medium rounded-full mt-2
                                     @if($post->status == 'published') bg-green-100 text-green-800
                                     @else bg-yellow-100 text-yellow-800 @endif">
                                     {{ ucfirst($post->status) }}
                                 </span>
                             </div>
                             <div class="flex space-x-2 ml-4">
-                                <button onclick="editPost({{ $post->id }})" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
+                                <a href="{{ route('admin.blog.edit', $post->id) }}" class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-100 transition-colors">
                                     <i class="fas fa-edit"></i>
-                                </button>
-                                <button onclick="deletePost({{ $post->id }})" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                </a>
+                                <form action="{{ route('admin.blog.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus post ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-100 transition-colors">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         @empty
                         <div class="text-center py-8">
                             <i class="fas fa-blog text-gray-400 text-4xl mb-4"></i>
-                            <p class="text-gray-500">No blog posts found</p>
+                            <p class="text-gray-500 mb-4">No blog posts found</p>
+                            <a href="{{ route('admin.blog.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md transition-colors">
+                                Write First Post
+                            </a>
                         </div>
                         @endforelse
                     </div>
+                    @if($recentPosts->count() > 0)
+                    <div class="mt-4 text-center">
+                        <a href="{{ route('admin.blog.index') }}" class="text-purple-600 hover:text-purple-800 font-medium">
+                            View All Posts →
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Event Modal -->
-<div id="eventModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
-        <div class="mt-3">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-medium text-gray-900">Add/Edit Event</h3>
-                <button onclick="closeModal('eventModal')" class="text-gray-400 hover:text-gray-600">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <form id="eventForm" method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Event Title</label>
-                        <input type="text" name="title" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <textarea name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required></textarea>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
-                            <input type="date" name="date" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
-                            <input type="time" name="time" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                        <input type="text" name="location" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Event Image</label>
-                        <input type="file" name="image" accept="image/*" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                </div>
-                <div class="flex justify-end space-x-3 mt-6">
-                    <button type="button" onclick="closeModal('eventModal')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Save Event</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Add similar modals for Merchandise, Projects, and Blog -->
-
 @endsection
 
-@push('scripts')
-<script>
-function openModal(modalId) {
-    document.getElementById(modalId).classList.remove('hidden');
-}
-
-function closeModal(modalId) {
-    document.getElementById(modalId).classList.add('hidden');
-}
-
-// Event Form Submission
-document.getElementById('eventForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    
-    fetch('/admin/events', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            closeModal('eventModal');
-            location.reload();
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while saving the event.');
-    });
-});
-
-function deleteEvent(id) {
-    if (confirm('Are you sure you want to delete this event?')) {
-        fetch(`/admin/events/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error: ' + data.message);
-            }
-        });
-    }
-}
-
-// Add similar functions for merchandise, projects, and blog posts
-</script>
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 @endpush

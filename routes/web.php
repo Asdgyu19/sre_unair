@@ -58,22 +58,46 @@ Route::get('/admin-test', fn () => 'Admin Masuk')->middleware(['auth', 'admin'])
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // Event Management
+     /*
+    |--------------------------------------------------------------------------
+    | Event Management
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/events', fn () => view('admin.events.index'))->name('events.index');
+    Route::get('/events/create', fn () => view('admin.events.create'))->name('events.create');
     Route::post('/events', [AdminController::class, 'storeEvent'])->name('events.store');
     Route::put('/events/{id}', [AdminController::class, 'updateEvent'])->name('events.update');
     Route::delete('/events/{id}', [AdminController::class, 'destroyEvent'])->name('events.destroy');
 
-    // Merchandise Management
+    /*
+    |--------------------------------------------------------------------------
+    | Merchandise Management
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/merchandise', fn () => view('admin.merchandise.index'))->name('merchandise.index');
+    Route::get('/merchandise/create', fn () => view('admin.merchandise.create'))->name('merchandise.create');
     Route::post('/merchandise', [AdminController::class, 'storeMerchandise'])->name('merchandise.store');
     Route::put('/merchandise/{id}', [AdminController::class, 'updateMerchandise'])->name('merchandise.update');
     Route::delete('/merchandise/{id}', [AdminController::class, 'destroyMerchandise'])->name('merchandise.destroy');
 
-    // Project Management
+    /*
+    |--------------------------------------------------------------------------
+    | Project Management
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/projects', fn () => view('admin.projects.index'))->name('projects.index');
+    Route::get('/projects/create', fn () => view('admin.projects.create'))->name('projects.create');
     Route::post('/projects', [AdminController::class, 'storeProject'])->name('projects.store');
     Route::put('/projects/{id}', [AdminController::class, 'updateProject'])->name('projects.update');
     Route::delete('/projects/{id}', [AdminController::class, 'destroyProject'])->name('projects.destroy');
 
-    // Blog Management
+    /*
+    |--------------------------------------------------------------------------
+    | Blog Management
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/blog', fn () => view('admin.blog.index'))->name('blog.index');
+    Route::get('/blog/create', fn () => view('admin.blog.create'))->name('blog.create');
     Route::post('/blog', [AdminController::class, 'storeBlogPost'])->name('blog.store');
     Route::put('/blog/{id}', [AdminController::class, 'updateBlogPost'])->name('blog.update');
     Route::delete('/blog/{id}', [AdminController::class, 'destroyBlogPost'])->name('blog.destroy');
