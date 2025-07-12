@@ -107,6 +107,12 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Event deleted successfully']);
     }
 
+        public function frontend()
+    {
+        $events = Event::latest()->get(); // ambil semua event
+        return view('events', compact('events'));
+    }
+
     // Merchandise Management
     public function storeMerchandise(Request $request)
     {

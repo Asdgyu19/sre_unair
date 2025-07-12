@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\BlogPostController;
 use App\Models\BlogPost;
 
 /*
@@ -26,6 +28,8 @@ Route::get('/posts/{post:slug}', fn (BlogPost $post) => view('post', [
     'title' => 'Single Post',
     'post' => $post,
 ]));
+
+Route::get('/events', [EventController::class, 'frontend'])->name('events');
 
 
 /*
@@ -63,11 +67,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     | Event Management
     |--------------------------------------------------------------------------
     */
-    Route::get('/events', fn () => view('admin.events.index'))->name('events.index');
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/create', fn () => view('admin.events.create'))->name('events.create');
-    Route::post('/events', [AdminController::class, 'storeEvent'])->name('events.store');
-    Route::put('/events/{id}', [AdminController::class, 'updateEvent'])->name('events.update');
-    Route::delete('/events/{id}', [AdminController::class, 'destroyEvent'])->name('events.destroy');
+    Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::post('/events', [EventController::class, 'store'])->name('events.store');
+    Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +103,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     */
     Route::get('/blog', fn () => view('admin.blog.index'))->name('blog.index');
     Route::get('/blog/create', fn () => view('admin.blog.create'))->name('blog.create');
-    Route::post('/blog', [AdminController::class, 'storeBlogPost'])->name('blog.store');
-    Route::put('/blog/{id}', [AdminController::class, 'updateBlogPost'])->name('blog.update');
-    Route::delete('/blog/{id}', [AdminController::class, 'destroyBlogPost'])->name('blog.destroy');
+    Route::post('/blog', [BlogPostController::class, 'storeBlogPost'])->name('blog.store');
+    Route::put('/blog/{id}', [BlogPostController::class, 'updateBlogPost'])->name('blog.update');
+    Route::delete('/blog/{id}', [BlogPostController::class, 'destroyBlogPost'])->name('blog.destroy');
 });
