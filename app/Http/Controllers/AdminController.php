@@ -32,32 +32,32 @@ class AdminController extends Controller
 
     // Event Management
     public function storeEvent(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'date' => 'required|date',
-        'time' => 'required',
-        'location' => 'required|string|max:255',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'time' => 'required',
+            'location' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $imagePath = null;
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('uploads/events', 'public');
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads/events', 'public');
+        }
+
+        $event = Event::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'time' => $request->time,
+            'location' => $request->location,
+            'image' => $imagePath,
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Event created successfully.', 'event' => $event]);
     }
-
-    $event = Event::create([
-        'title' => $request->title,
-        'description' => $request->description,
-        'date' => $request->date,
-        'time' => $request->time,
-        'location' => $request->location,
-        'image' => $imagePath,
-    ]);
-
-    return response()->json(['success' => true, 'message' => 'Event created successfully.', 'event' => $event]);
-}
 
     public function updateEvent(Request $request, $id)
     {
@@ -112,26 +112,66 @@ class AdminController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'required|in:active,inactive',
         ]);
 
-        $merchandise = new Merchandise();
-        $merchandise->name = $request->name;
-        $merchandise->description = $request->description;
-        $merchandise->price = $request->price;
-        $merchandise->category = $request->category;
+        $merch = new Merchandise();
+        $merch->fill($request->except('image'));
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('merchandise', 'public');
-            $merchandise->image = 'storage/' . $imagePath;
+            $path = $request->file('image')->store('merchandise', 'public');
+            $merch->image = 'storage/' . $path;
         }
 
-        $merchandise->save();
+        $merch->save();
 
-        return response()->json(['success' => true, 'message' => 'Merchandise created successfully']);
+        return redirect()->route('admin.merchandise.index')->with('success', 'Merchandise created successfully.');
+    }
+
+    public function updateMerchandise(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'category' => 'required|string|max:255',
+            'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $merch = Merchandise::findOrFail($id);
+        $merch->fill($request->except('image'));
+
+        if ($request->hasFile('image')) {
+            if ($merch->image) {
+                Storage::disk('public')->delete(str_replace('storage/', '', $merch->image));
+            }
+            $path = $request->file('image')->store('merchandise', 'public');
+            $merch->image = 'storage/' . $path;
+        }
+
+        $merch->save();
+
+        return redirect()->route('admin.merchandise.index')->with('success', 'Merchandise updated successfully.');
+    }
+
+    public function destroyMerchandise($id)
+    {
+        $merch = Merchandise::findOrFail($id);
+
+        if ($merch->image) {
+            Storage::disk('public')->delete(str_replace('storage/', '', $merch->image));
+        }
+
+        $merch->delete();
+
+        return redirect()->route('admin.merchandise.index')->with('success', 'Merchandise deleted successfully.');
     }
 
     // Project Management

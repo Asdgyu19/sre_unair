@@ -9,7 +9,7 @@
         <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6 md:p-10">
             <!-- Optional Image -->
             <img src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded-lg mb-6">
-
+php artisan db:seed
             <!-- Date -->
             <div class="flex items-center text-sm text-gray-500 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
