@@ -5,7 +5,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold text-gray-900">Blog Posts Management</h1>
-            <a href="{{ route('admin.posts.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md transition-colors">
+            <a href="{{ route('admin.blog.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md transition-colors">
                 <i class="fas fa-plus mr-2"></i>Add Post
             </a>
         </div>
@@ -60,9 +60,9 @@
                                 {{ $post->published_at ? $post->published_at->format('M d, Y') : '-' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('admin.posts.show', $post) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                                <a href="{{ route('admin.posts.edit', $post) }}" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
-                                <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
+                                <a href="{{ route('admin.blog.show', $post) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
+                                <a href="{{ route('admin.blog.edit', $post) }}" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                                <form action="{{ route('admin.blog.destroy', $post) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>

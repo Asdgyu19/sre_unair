@@ -1,276 +1,311 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="w-full bg-gradient-to-b from-[#045947] via-[#0b9174] to-[#e6f7f2] py-20 text-white">
-  <div class="container mx-auto px-4 lg:px-20">
-    <!-- About Us Header -->
-    <div class="mb-16 text-center">
-      <h2 class="text-5xl font-bold mb-6">About Us</h2>
-      <div class="w-28 h-1 bg-white mx-auto mb-8"></div>
-      <p class="text-lg max-w-4xl mx-auto leading-relaxed text-gray-200">
-        Universitas Airlangga's Society of Renewable Energy (SRE UNAIR) is a student organization dedicated to promoting sustainable energy solutions and environmental awareness. We strive to educate, innovate, and inspire the next generation of renewable energy leaders.
-      </p>
-    </div>
-
-    <!-- Vision & Mission -->
-    <div class="bg-white rounded-2xl shadow-lg py-16 px-8 lg:px-20 text-black">
-      <!-- Vision -->
-      <div class="text-center mb-20">
-        <h2 class="text-4xl font-bold text-green-700 mb-6">VISION</h2>
-        <p class="text-xl text-gray-600">
-          Establish SRE UNAIR as a center for education and innovation in renewable energy, creating a generation of competent, competitive, and impactful contributors to sustainable development in Indonesia.
+<div class="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="relative container mx-auto px-4 py-24 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+          About Us
+        </h1>
+        <div class="w-24 h-1 bg-gradient-to-r from-emerald-300 to-teal-300 mx-auto mb-8 rounded-full"></div>
+        <p class="text-xl lg:text-2xl leading-relaxed text-emerald-50 font-light">
+          Universitas Airlangga's Society of Renewable Energy (SRE UNAIR) is a student organization dedicated to
+          promoting sustainable energy solutions and environmental awareness. We strive to educate, innovate, and
+          inspire the next generation of renewable energy leaders.
         </p>
       </div>
-      
-      <!-- Mission -->
-      <div>
-        <h2 class="text-4xl font-bold text-green-700 text-center mb-12">MISSION</h2>
-        <div class="grid gap-12 lg:grid-cols-2">
-          <div class="flex items-start gap-6">
-            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Vision & Mission Section -->
+  <section class="py-20 px-4 lg:px-8">
+    <div class="container mx-auto max-w-6xl">
+      <div class="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+        <div class="p-12 lg:p-16">
+          <!-- Vision -->
+          <div class="text-center mb-20">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl mb-6">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
               </svg>
             </div>
-            <p class="text-lg text-gray-600">
-              Empower members to become change agents in renewable energy through innovative education and training programs.
+            <h2 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-8">
+              VISION
+            </h2>
+            <p class="text-xl lg:text-2xl text-gray-700 leading-relaxed font-light max-w-4xl mx-auto">
+              Establish SRE UNAIR as a center for education and innovation in renewable energy, creating a
+              generation of competent, competitive, and impactful contributors to sustainable development in
+              Indonesia.
             </p>
           </div>
-          <div class="flex items-start gap-6">
-            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
-              </svg>
+
+          <!-- Mission -->
+          <div>
+            <div class="text-center mb-16">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h2 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                MISSION
+              </h2>
             </div>
-            <p class="text-lg text-gray-600">
-              Offer opportunities for members to engage in research and innovation, contributing impactful solutions for society.
-            </p>
-          </div>
-          <div class="flex items-start gap-6">
-            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
-              </svg>
+
+            <div class="grid gap-8 lg:grid-cols-2">
+              <!-- Mission Item 1 -->
+              <div class="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-gray-50 rounded-xl p-8">
+                <div class="flex items-start gap-6">
+                  <div class="flex-shrink-0 w-18 h-18 rounded-4xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <img src="{{ asset('assets/images/about/Empowering.png') }}" alt="Empowering Logo" class="w-full h-full object-cover">
+                  </div>
+                  <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                    Empower members to become change agents in renewable energy through innovative education and training programs.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Mission Item 2 -->
+              <div class="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-gray-50 rounded-xl p-8">
+                <div class="flex items-start gap-6">
+                  <div class="flex-shrink-0 w-18 h-18 rounded-4xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <img src="{{ asset('assets/images/about/knowledge.png') }}" alt="Empowering Logo" class="w-full h-full object-cover">
+                  </div>
+                  <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                    Offer opportunities for members to engage in research and innovation, contributing impactful solutions for society.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Mission Item 3 -->
+              <div class="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-gray-50 rounded-xl p-8">
+                <div class="flex items-start gap-6">
+                  <div class="flex-shrink-0 w-18 h-18 rounded-4xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <img src="{{ asset('assets/images/about/Networking.png') }}" alt="Empowering Logo" class="w-full h-full object-cover">
+                  </div>
+                  <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                    Foster members' growth with a hands-on curriculum, equipping them to understand and teach renewable energy concepts effectively.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Mission Item 4 -->
+              <div class="group hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-gray-50 rounded-xl p-8">
+                <div class="flex items-start gap-6">
+                  <div class="flex-shrink-0 w-18 h-18 rounded-4xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+                <img src="{{ asset('assets/images/about/Opportunity.png') }}" alt="Empowering Logo" class="w-full h-full object-cover">
+                  </div>
+                  <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                    Apply knowledge and skills through community service and educational programs, raising awareness about renewable energy.
+                  </p>
+                </div>
+              </div>
             </div>
-            <p class="text-lg text-gray-600">
-              Foster members' growth with a hands-on curriculum, equipping them to understand and teach renewable energy concepts effectively.
-            </p>
-          </div>
-          <div class="flex items-start gap-6">
-            <div class="bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
-              </svg>
-            </div>
-            <p class="text-lg text-gray-600">
-              Apply knowledge and skills through community service and educational programs, raising awareness about renewable energy.
-            </p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  
+<!-- Leadership Section -->
+<section class="py-20 px-4 lg:px-8 bg-gradient-to-br from-gray-50 to-emerald-50">
+  <div class="container mx-auto max-w-6xl">
+    <div class="text-center mb-16">
+      <h3 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+        Top Executive
+      </h3>
+      <p class="text-xl text-gray-600 font-light">Meet the dedicated leaders driving our mission forward</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      @foreach([
+        [
+          'title' => 'President',
+          'name' => 'Wigi Utami',
+          'image' => 'wigi.JPG',
+          'instagram' => 'https://instagram.com/wigiutami',
+          'linkedin' => 'https://linkedin.com/in/wigiutami'
+        ],
+        [
+          'title' => 'Vice President',
+          'name' => 'Fakhrur Rozi',
+          'image' => 'fakhrur.jpg',
+          'instagram' => 'https://instagram.com/fakhrur',
+          'linkedin' => 'https://linkedin.com/in/fakhrur'
+        ],
+        [
+          'title' => 'Secretary',
+          'name' => 'Najwa Salsa Nabila',
+          'image' => 'najwa.jpg',
+          'instagram' => 'https://instagram.com/najwasalsa',
+          'linkedin' => 'https://linkedin.com/in/najwasalsa'
+        ],
+        [
+          'title' => 'Assistant Secretary',
+          'name' => 'Wahyunillahi',
+          'image' => 'wahyu.jpg',
+          'instagram' => 'https://instagram.com/wahyunillahi',
+          'linkedin' => 'https://linkedin.com/in/wahyunillahi'
+        ],
+        [
+          'title' => 'Chief Finance Officer',
+          'name' => 'Eka Nurliana',
+          'image' => 'eka.jpg',
+          'instagram' => 'https://instagram.com/ekanurliana',
+          'linkedin' => 'https://linkedin.com/in/ekanurliana'
+        ],
+        [
+          'title' => 'Treasurer',
+          'name' => 'Elfa Rosa Putri Yulianto',
+          'image' => 'elfa.jpg',
+          'instagram' => 'https://instagram.com/elfarosa',
+          'linkedin' => 'https://linkedin.com/in/elfarosa'
+        ],
+      ] as $leader)
+      <div class="group hover:shadow-2xl transition-all duration-500 border-0 bg-white overflow-hidden rounded-2xl">
+        <div class="relative">
+          <img src="{{ asset('images/executive/' . $leader['image']) }}" alt="{{ $leader['name'] }}" class="object-cover w-full h-80">
+        </div>
+        <div class="p-8 text-center">
+          <h4 class="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+            {{ $leader['title'] }}
+          </h4>
+          <p class="text-gray-600 mb-6 font-medium">{{ $leader['name'] }}</p>
+          <div class="flex justify-center space-x-4">
+            <!-- Instagram -->
+            <a href="{{ $leader['instagram'] }}" target="_blank" class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-50 to-teal-50 hover:from-emerald-500 hover:to-teal-600 hover:text-white transition-all duration-300 flex items-center justify-center group/btn">
+              <svg class="w-5 h-5 text-emerald-600 group-hover/btn:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm5.25-.88a.88.88 0 1 1-1.75 0a.88.88 0 0 1 1.75 0z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="{{ $leader['linkedin'] }}" target="_blank" class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-50 to-teal-50 hover:from-emerald-500 hover:to-teal-600 hover:text-white transition-all duration-300 flex items-center justify-center group/btn">
+              <svg class="w-5 h-5 text-emerald-600 group-hover/btn:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.3c-1 0-1.7-.8-1.7-1.7s.8-1.7 1.7-1.7 1.7.8 1.7 1.7-.8 1.7-1.7 1.7zm13.5 10.3h-3v-4.7c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4v4.8h-3v-9h2.9v1.2h.1c.4-.7 1.4-1.5 2.9-1.5 3.1 0 3.6 2 3.6 4.6v4.7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      @endforeach
     </div>
   </div>
 </section>
-    <!-- Leadership Section -->
-    <div class="mb-20">
-      <h3 class="text-3xl font-bold text-green-700 text-center mb-12">Our Leadership</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- President -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-          <div class="h-80 bg-gray-200 relative">
-            <!-- User will add their own photo -->
-            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-              <p>President Photo</p>
-            </div>
-          </div>
-          <div class="p-6 text-center">
-            <h4 class="text-xl font-bold text-green-700 mb-1">President</h4>
-            <p class="text-gray-600 mb-4">Name will be added</p>
-            <div class="flex justify-center space-x-4">
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <!-- Vice President -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-          <div class="h-80 bg-gray-200 relative">
-            <!-- User will add their own photo -->
-            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-              <p>Vice President Photo</p>
-              <p class="text-gray-600 mb-4">Name will be added</p>
-            </div>
-          </div>
-          <div class="p-6 text-center">
-            <h4 class="text-xl font-bold text-green-700 mb-1">Vice President</h4>
-            <p class="text-gray-600 mb-4">Name will be added</p>
-            <div class="flex justify-center space-x-4">
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <!-- Secretary -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-          <div class="h-80 bg-gray-200 relative">
-            <!-- User will add their own photo -->
-            <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-              <p>Secretary Photo</p>
-            </div>
-          </div>
-          <div class="p-6 text-center">
-            <h4 class="text-xl font-bold text-green-700 mb-1">Secretary</h4>
-            <p class="text-gray-600 mb-4">Name will be added</p>
-            <div class="flex justify-center space-x-4">
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" class="text-green-700 hover:text-green-900">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-            </div>
+
+  <!-- Organizational Chart Section -->
+  <section class="py-20 px-4 lg:px-8">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+          Organizational Structure
+        </h3>
+        <p class="text-xl text-gray-600 font-light">Our structured approach to achieving excellence</p>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+        <div class="p-12">
+          <div class="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-2xl p-8 min-h-[400px] flex items-center justify-center">  
+              <img src="{{ asset('assets/images/about/organizational-chart.jpg') }}" alt="SRE UNAIR Organizational Structure">
+
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Organizational Chart Section -->
-    <div class="mb-20">
-      <h3 class="text-3xl font-bold text-green-700 text-center mb-12">Organizational Structure</h3>
-      <div class="bg-white rounded-lg shadow-md p-8">
-        <!-- Placeholder for organizational chart - user will add their own image -->
-        <div class="bg-gray-100 rounded-lg p-4">
-          <img src="{{ asset('images/organizational-chart.png') }}" alt="SRE UNAIR Organizational Structure" class="w-full">
-        </div>
+  <!-- Departments Section -->
+  <section class="py-20 px-4 lg:px-8 bg-gradient-to-br from-emerald-50 to-teal-50">
+    <div class="container mx-auto max-w-7xl">
+      <div class="text-center mb-16">
+        <h3 class="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+          SRE UNAIR Departments
+        </h3>
+        <p class="text-xl text-gray-600 font-light">Specialized teams working towards our common goals</p>
       </div>
-    </div>
 
-    <!-- Departments Section -->
-    <div>
-      <h3 class="text-3xl font-bold text-green-700 text-center mb-12">SRE UNAIR Departments</h3>
-      
       <div class="relative">
         <div class="overflow-x-auto pb-4" style="scrollbar-width: none; -ms-overflow-style: none;">
           <div class="flex space-x-6 min-w-max px-4">
-            <!-- Department Cards -->
-            <div class="w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gray-200 relative">
-                <!-- User will add their own photo -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-                  <p>Research & Development Photo</p>
+            @foreach([
+              [
+                'title' => 'Research & Development',
+                'description' => 'Conducting research projects and developing innovative solutions in renewable energy.',
+                'icon' => '<circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>'
+              ],
+              [
+                'title' => 'Education & Training',
+                'description' => 'Providing educational resources and training programs for members and the community.',
+                'icon' => '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>'
+              ],
+              [
+                'title' => 'Project Management',
+                'description' => 'Planning and executing sustainability projects on campus and in the community.',
+                'icon' => '<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>'
+              ],
+              [
+                'title' => 'Media & Communications',
+                'description' => 'Managing social media, website, and publications to raise awareness.',
+                'icon' => '<path d="M3 11l18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>'
+              ],
+              [
+                'title' => 'External Relations',
+                'description' => 'Building partnerships with external organizations and stakeholders.',
+                'icon' => '<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path>'
+              ]
+            ] as $dept)
+            <div class="w-80 group hover:shadow-2xl transition-all duration-500 border-0 bg-white overflow-hidden rounded-2xl flex-shrink-0">
+              <div class="h-48 bg-gradient-to-br from-emerald-100 to-teal-100 relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center text-emerald-600">
+                    <div class="w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {!! $dept['icon'] !!}
+                      </svg>
+                    </div>
+                    <p class="font-medium">{{ $dept['title'] }} Photo</p>
+                  </div>
                 </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div class="p-6">
-                <h4 class="text-xl font-bold text-green-700 mb-2">Research & Development</h4>
-                <p class="text-gray-600 mb-4">Conducting research projects and developing innovative solutions in renewable energy.</p>
-                <a href="#" class="inline-block px-4 py-2 border border-green-700 text-green-700 rounded hover:bg-green-700 hover:text-white transition-colors">
+              <div class="p-8">
+                <h4 class="text-xl font-bold text-emerald-700 mb-3 group-hover:text-emerald-600 transition-colors">
+                  {{ $dept['title'] }}
+                </h4>
+                <p class="text-gray-600 mb-6 leading-relaxed">{{ $dept['description'] }}</p>
+                <a href="#" class="inline-block w-full text-center px-4 py-3 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-300 rounded-xl font-medium bg-transparent">
                   Learn More
                 </a>
               </div>
             </div>
-
-            <div class="w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gray-200 relative">
-                <!-- User will add their own photo -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-                  <p>Education & Training Photo</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <h4 class="text-xl font-bold text-green-700 mb-2">Education & Training</h4>
-                <p class="text-gray-600 mb-4">Providing educational resources and training programs for members and the community.</p>
-                <a href="#" class="inline-block px-4 py-2 border border-green-700 text-green-700 rounded hover:bg-green-700 hover:text-white transition-colors">
-                  Learn More
-                </a>
-              </div>
-            </div>
-
-            <div class="w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gray-200 relative">
-                <!-- User will add their own photo -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-                  <p>Project Management Photo</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <h4 class="text-xl font-bold text-green-700 mb-2">Project Management</h4>
-                <p class="text-gray-600 mb-4">Planning and executing sustainability projects on campus and in the community.</p>
-                <a href="#" class="inline-block px-4 py-2 border border-green-700 text-green-700 rounded hover:bg-green-700 hover:text-white transition-colors">
-                  Learn More
-                </a>
-              </div>
-            </div>
-
-            <div class="w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gray-200 relative">
-                <!-- User will add their own photo -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-                  <p>Media & Communications Photo</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <h4 class="text-xl font-bold text-green-700 mb-2">Media & Communications</h4>
-                <p class="text-gray-600 mb-4">Managing social media, website, and publications to raise awareness.</p>
-                <a href="#" class="inline-block px-4 py-2 border border-green-700 text-green-700 rounded hover:bg-green-700 hover:text-white transition-colors">
-                  Learn More
-                </a>
-              </div>
-            </div>
-
-            <div class="w-72 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="h-48 bg-gray-200 relative">
-                <!-- User will add their own photo -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-500">
-                  <p>External Relations Photo</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <h4 class="text-xl font-bold text-green-700 mb-2">External Relations</h4>
-                <p class="text-gray-600 mb-4">Building partnerships with external organizations and stakeholders.</p>
-                <a href="#" class="inline-block px-4 py-2 border border-green-700 text-green-700 rounded hover:bg-green-700 hover:text-white transition-colors">
-                  Learn More
-                </a>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
 
-        <!-- Scroll buttons (optional) -->
-        <button class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full w-10 h-10 flex items-center justify-center bg-white/80 shadow-lg border border-gray-200 hidden md:flex" onclick="document.querySelector('.overflow-x-auto').scrollBy({left: -300, behavior: 'smooth'})">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Scroll buttons -->
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full w-12 h-12 bg-white/90 shadow-lg border border-gray-200 hidden md:flex items-center justify-center hover:bg-white hover:shadow-xl transition-all duration-300" onclick="document.querySelector('.overflow-x-auto').scrollBy({left: -300, behavior: 'smooth'})">
+          <svg class="h-6 w-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-
-        <button class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full w-10 h-10 flex items-center justify-center bg-white/80 shadow-lg border border-gray-200 hidden md:flex" onclick="document.querySelector('.overflow-x-auto').scrollBy({left: 300, behavior: 'smooth'})">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rounded-full w-12 h-12 bg-white/90 shadow-lg border border-gray-200 hidden md:flex items-center justify-center hover:bg-white hover:shadow-xl transition-all duration-300" onclick="document.querySelector('.overflow-x-auto').scrollBy({left: 300, behavior: 'smooth'})">
+          <svg class="h-6 w-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 @endsection

@@ -101,9 +101,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     | Blog Management
     |--------------------------------------------------------------------------
     */
-    Route::get('/blog', fn () => view('admin.blog.index'))->name('blog.index');
-    Route::get('/blog/create', fn () => view('admin.blog.create'))->name('blog.create');
-    Route::post('/blog', [BlogPostController::class, 'storeBlogPost'])->name('blog.store');
-    Route::put('/blog/{id}', [BlogPostController::class, 'updateBlogPost'])->name('blog.update');
-    Route::delete('/blog/{id}', [BlogPostController::class, 'destroyBlogPost'])->name('blog.destroy');
+ Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
+    Route::get('/blog/create', [BlogPostController::class, 'create'])->name('blog.create');
+    Route::post('/blog', [BlogPostController::class, 'store'])->name('blog.store');
+    Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
+    Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
+    Route::put('/blog/{blogPost}', [BlogPostController::class, 'update'])->name('blog.update');
+    Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
 });
