@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gray-100 pt-24">
     <!-- Header -->
     <header class="bg-white shadow-sm border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,7 +196,7 @@
                         <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                             <div class="flex items-center flex-1">
                                 @if($item->image)
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="w-16 h-16 object-cover rounded-lg mr-4">
                                 @else
                                 <div class="w-16 h-16 bg-gray-300 rounded-lg mr-4 flex items-center justify-center">
                                     <i class="fas fa-image text-gray-500"></i>
@@ -204,7 +204,7 @@
                                 @endif
                                 <div>
                                     <h3 class="font-semibold text-gray-900">{{ $item->name }}</h3>
-                                    <p class="text-sm text-gray-600">${{ number_format($item->price, 2) }}</p>
+                                    <p class="text-sm text-gray-600">Rp{{ number_format($item->price, 2) }}</p>
                                     <p class="text-xs text-gray-500">{{ $item->category }} • Stock: {{ $item->stock }}</p>
                                 </div>
                             </div>

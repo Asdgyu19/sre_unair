@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\User\MerchendiseController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\Admin\MerchandiseController;
+
 use App\Models\BlogPost;
 
 /*
@@ -17,7 +20,10 @@ Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/events', fn () => view('events'))->name('events');
 Route::get('/projects', fn () => view('projects'))->name('projects');
 Route::get('/education', fn () => view('education'))->name('education');
-Route::get('/merchandise', fn () => view('merchandise'))->name('merchandise');
+// Route::get('/merchandise', fn () => view('merchandise'))->name('merchandise');
+Route::get('/merchandise', [MerchendiseController::class, 'publicIndex'])->name('merchandise');
+
+// Route::get('/merchandise', [MerchandiseController::class, 'publicIndex'])->name('merchandise');
 
 Route::get('/blog', fn () => view('blog', [
     'title' => 'Blog',
@@ -79,11 +85,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     | Merchandise Management
     |--------------------------------------------------------------------------
     */
-    Route::get('/merchandise', fn () => view('admin.merchandise.index'))->name('merchandise.index');
-    Route::get('/merchandise/create', fn () => view('admin.merchandise.create'))->name('merchandise.create');
-    Route::post('/merchandise', [AdminController::class, 'storeMerchandise'])->name('merchandise.store');
-    Route::put('/merchandise/{id}', [AdminController::class, 'updateMerchandise'])->name('merchandise.update');
-    Route::delete('/merchandise/{id}', [AdminController::class, 'destroyMerchandise'])->name('merchandise.destroy');
+    Route::get('/merchandise', [MerchandiseController::class, 'index'])->name('merchandise.index');
+    Route::get('/merchandise/create', [MerchandiseController::class, 'create'])->name('merchandise.create');
+    Route::post('/merchandise', [MerchandiseController::class, 'store'])->name('merchandise.store');
+    Route::get('/merchandise/{merchandise}/edit', [MerchandiseController::class, 'edit'])->name('merchandise.edit');
+    Route::put('/merchandise/{merchandise}', [MerchandiseController::class, 'update'])->name('merchandise.update');
+    Route::delete('/merchandise/{merchandise}', [MerchandiseController::class, 'destroy'])->name('merchandise.destroy');
+    // Route::get('/merchandise', fn () => view('admin.merchandise.index'))->name('merchandise.index');
+    // Route::get('/merchandise/create', fn () => view('admin.merchandise.create'))->name('merchandise.create');
+    // Route::post('/merchandise', [AdminController::class, 'storeMerchandise'])->name('merchandise.store');
+    // Route::put('/merchandise/{id}', [AdminController::class, 'updateMerchandise'])->name('merchandise.update');
+    // Route::delete('/merchandise/{id}', [AdminController::class, 'destroyMerchandise'])->name('merchandise.destroy');
 
     /*
     |--------------------------------------------------------------------------
