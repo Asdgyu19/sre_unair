@@ -8,7 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MerchandiseController extends Controller
+class MerchendiseController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,7 @@ class MerchandiseController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['publicIndex', 'show']);
     }
 
     /**
@@ -33,6 +33,16 @@ class MerchandiseController extends Controller
             ->paginate(12);
             
         return view('user.merchandise.index', compact('merchandise'));
+    }
+
+    public function publicIndex()
+    {
+        $merchandise = Merchandise::where('status', 'available')
+            ->where('stock', '>', 0)
+            ->latest()
+            ->paginate(3);
+
+        return view('merchandise', compact('merchandise'));
     }
 
     /**

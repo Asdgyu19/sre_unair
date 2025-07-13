@@ -20,6 +20,28 @@
                 <!-- The 3D marquee will be initialized here via JavaScript -->
             </div>
         </div>
+
+        {{-- BUAT TEST DOANG --}}
+        <!-- Merchandise Grid -->
+        {{-- <div class="text-center">
+            <h3 class="text-2xl font-semibold text-gray-900">Available Merchandise</h3>
+            <p class="text-gray-600 mt-2">Browse through our latest merchandise offerings.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
+            @forelse ($merchandise as $item)
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-gray-900">{{ $item->name }}</h3>
+                        <p class="text-gray-600 mt-2">{{ $item->description }}</p>
+                        <p class="text-blue-600 font-semibold mt-2">Rp{{ number_format($item->price, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+            @empty
+                <p class="col-span-4 text-center text-gray-500">Belum ada merchandise tersedia.</p>
+            @endforelse
+        </div> --}}
+        {{-- BUAT TEST DOANG --}}
         
         <div class="text-center mt-12">
             <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
