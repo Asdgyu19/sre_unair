@@ -40,9 +40,19 @@ class MerchendiseController extends Controller
         $merchandise = Merchandise::where('status', 'available')
             ->where('stock', '>', 0)
             ->latest()
-            ->paginate(3);
+            ->paginate(4);
 
         return view('merchandise', compact('merchandise'));
+    }
+
+    public function shop()
+    {
+        $merchandise = Merchandise::where('status', 'available')
+            ->where('stock', '>', 0)
+            ->latest()
+            ->paginate(8); // <= paginate 8 item per halaman
+
+        return view('shop', compact('merchandise'));
     }
 
     /**

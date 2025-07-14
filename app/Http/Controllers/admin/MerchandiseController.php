@@ -82,7 +82,7 @@ class MerchandiseController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:255',
-            'status' => 'required|in:active,inactive',
+            'status' => 'required|in:available,unavailable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

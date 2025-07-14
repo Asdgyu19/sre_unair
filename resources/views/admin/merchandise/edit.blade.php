@@ -68,7 +68,7 @@
                             <option value="unavailable" {{ old('status', $merchandise->status) == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
                         </select>
                         @error('status')
-                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
 

@@ -13,38 +13,42 @@
                 Explore our collection of sustainable and eco-friendly merchandise.
             </p>
         </div>
-        
-        <!-- 3D Marquee Display -->
-        <div class="mx-auto my-10 max-w-7xl rounded-3xl bg-gray-950/5 p-2 ring-1 ring-neutral-700/10 dark:bg-neutral-800">
-            <div id="merchandise-marquee" class="mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100">
-                <!-- The 3D marquee will be initialized here via JavaScript -->
-            </div>
-        </div>
 
-        {{-- BUAT TEST DOANG --}}
         <!-- Merchandise Grid -->
-        {{-- <div class="text-center">
-            <h3 class="text-2xl font-semibold text-gray-900">Available Merchandise</h3>
-            <p class="text-gray-600 mt-2">Browse through our latest merchandise offerings.</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             @forelse ($merchandise as $item)
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-gray-900">{{ $item->name }}</h3>
-                        <p class="text-gray-600 mt-2">{{ $item->description }}</p>
-                        <p class="text-blue-600 font-semibold mt-2">Rp{{ number_format($item->price, 0, ',', '.') }}</p>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
+                    <div class="relative">
+                        <img src="{{ asset($item->image) }}" alt="{{ $item->name }}"
+                            class="w-full h-64 object-cover">
+                        <div
+                            class="absolute top-0 right-0 bg-[#F0C93D] text-[#7E6500] px-3 py-1 m-2 rounded-full text-sm font-semibold">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $item->name }}</h3> {{-- Perbaikan di sini --}}
+                        <p class="text-gray-700 mb-4">
+                            {{ $item->description }}
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-[#0E9671]">Rp{{ number_format($item->price, 0, ',', '.') }}</span>
+                            <a href="https://api.whatsapp.com/send?phone=62895338089322&text={{ urlencode('Halo SRE UNAIR, saya ingin membeli merchandise: ' . $item->name . '. Mohon infonya ya, terima kasih!') }}"
+                            target="_blank"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-[#0E9671] hover:bg-[#0c8566] transition">
+                                Buy Now
+                            </a>
+                        </div>
                     </div>
                 </div>
             @empty
                 <p class="col-span-4 text-center text-gray-500">Belum ada merchandise tersedia.</p>
             @endforelse
-        </div> --}}
-        {{-- BUAT TEST DOANG --}}
-        
+        </div>
+
+        <!-- Call to Action -->
         <div class="text-center mt-12">
-            <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
+            <a href="{{ route('shop') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
                 Shop All Merchandise
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

@@ -20,6 +20,7 @@ Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/events', fn () => view('events'))->name('events');
 Route::get('/projects', fn () => view('projects'))->name('projects');
 Route::get('/education', fn () => view('education'))->name('education');
+Route::get('/shop', [MerchendiseController::class, 'shop'])->name('shop');
 // Route::get('/merchandise', fn () => view('merchandise'))->name('merchandise');
 Route::get('/merchandise', [MerchendiseController::class, 'publicIndex'])->name('merchandise');
 
