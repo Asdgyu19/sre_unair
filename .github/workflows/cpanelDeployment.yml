@@ -1,0 +1,43 @@
+name: Deploy Laravel ke cPanel via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install Node Modules & Build Assets
+        run: |
+          npm install
+          npm run build
+
+      - name: Install PHP & Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: Install PHP Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Deploy via FTP to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.sre-unair.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/
