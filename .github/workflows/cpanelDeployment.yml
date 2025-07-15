@@ -40,5 +40,5 @@ jobs:
           server: 195.88.211.190
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          local-dir: public
+          local-dir: public/
           server-dir: /public_html/
