@@ -6,8 +6,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\MerchendiseController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\BlogPostController;
-use App\Http\Controllers\Admin\MerchandiseController;
-
 use App\Models\BlogPost;
 
 /*
@@ -18,7 +16,7 @@ use App\Models\BlogPost;
 Route::get('/', fn () => view('home'))->name('home');
 Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/events', fn () => view('events'))->name('events');
-Route::get('/projects', fn () => view('projects'))->name('projects');
+Route::get('/projects', [ProjectController::class, 'show'])->name('projects');
 Route::get('/education', fn () => view('education'))->name('education');
 Route::get('/shop', [MerchendiseController::class, 'shop'])->name('shop');
 // Route::get('/merchandise', fn () => view('merchandise'))->name('merchandise');
@@ -103,11 +101,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     | Project Management
     |--------------------------------------------------------------------------
     */
-    Route::get('/projects', fn () => view('admin.projects.index'))->name('projects.index');
-    Route::get('/projects/create', fn () => view('admin.projects.create'))->name('projects.create');
-    Route::post('/projects', [AdminController::class, 'storeProject'])->name('projects.store');
-    Route::put('/projects/{id}', [AdminController::class, 'updateProject'])->name('projects.update');
-    Route::delete('/projects/{id}', [AdminController::class, 'destroyProject'])->name('projects.destroy');
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+    Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+    Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
     /*
     |--------------------------------------------------------------------------

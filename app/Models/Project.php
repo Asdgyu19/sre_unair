@@ -4,20 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'name',
         'description',
         'category',
+        'by',
         'status',
-        'image',
-        'slug',
         'start_date',
-        'end_date'
+        'end_date',
     ];
 
     protected $casts = [
@@ -25,8 +25,13 @@ class Project extends Model
         'end_date' => 'date'
     ];
 
-    public function getRouteKeyName()
+    // public function getRouteKeyName()
+    // {
+    //     return 'id';
+    // }
+
+    public function images(): HasMany
     {
-        return 'slug';
+        return $this->hasMany(ProjectImage::class);
     }
 }
