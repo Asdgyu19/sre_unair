@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\MerchendiseController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\Admin\MerchandiseController;
+use App\Http\Controllers\ProjectController;
 use App\Models\BlogPost;
 
 /*
