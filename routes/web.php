@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\MerchandiseController;
 use App\Http\Controllers\ProjectController;
 use App\Models\BlogPost;
+use App\Http\Controllers\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +110,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+        /*
+    |--------------------------------------------------------------------------
+    | User Management
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/user', [UsersController::class, 'index'])->name('user.index');
+    Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
+    Route::post('/user', [UsersController::class, 'store'])->name('user.store');
+    Route::get('/user/{user}/edit', [UsersController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{user}', [UsersController::class, 'update'])->name('user.update');
+    Route::delete('/user/{user}', [UsersController::class, 'destroy'])->name('user.destroy');
 
     /*
     |--------------------------------------------------------------------------
