@@ -18,7 +18,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @forelse ($projects as $project)
                         <div
-                            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                            class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 flex flex-col">
                             {{-- Project Image --}}
                             <div class="relative h-64 w-full overflow-hidden">
                                 <img src="{{ $project->images->isNotEmpty() ? asset('storage/' . $project->images->first()->path) : 'https://via.placeholder.com/400x300.png?text=No+Image' }}"

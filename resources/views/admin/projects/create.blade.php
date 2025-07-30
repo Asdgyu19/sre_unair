@@ -41,8 +41,8 @@
           Informasi Program Kerja
         </h3>
       </div>
-      <div class="p-8">
-        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+      <div x-ignore class="p-8">
+        <form id="project-form" action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
           @csrf
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {{-- Left Column - Main Information --}}
@@ -196,12 +196,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const fileInput = document.getElementById('image-upload');
     const previewContainer = document.getElementById('image-preview-container');
     const uploadPrompt = document.getElementById('upload-prompt');
+    const form = document.querySelector('#project-form');
     
     let fileStore = [];
 
     const renderPreviews = () => {
         previewContainer.innerHTML = '';
-        
         if (fileStore.length > 0) {
             uploadPrompt.classList.add('hidden');
             previewContainer.classList.remove('hidden');
@@ -209,28 +209,23 @@ document.addEventListener('DOMContentLoaded', function () {
             uploadPrompt.classList.remove('hidden');
             previewContainer.classList.add('hidden');
         }
-
         fileStore.forEach((file, index) => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 const previewWrapper = document.createElement('div');
                 previewWrapper.className = 'relative group';
-
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.className = 'w-full h-24 object-cover rounded-md border border-slate-200';
-                
                 const removeBtn = document.createElement('button');
                 removeBtn.type = 'button';
                 removeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
                 removeBtn.className = 'absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity';
-                
                 removeBtn.addEventListener('click', () => {
                     fileStore.splice(index, 1);
                     updateFileInput();
                     renderPreviews();
                 });
-
                 previewWrapper.appendChild(img);
                 previewWrapper.appendChild(removeBtn);
                 previewContainer.appendChild(previewWrapper);
@@ -254,32 +249,27 @@ document.addEventListener('DOMContentLoaded', function () {
         fileInput.files = dataTransfer.files;
     };
 
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dragDropArea.addEventListener(eventName, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-        }, false);
-    });
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dragDropArea.addEventListener(eventName, () => {
-            dragDropArea.classList.add('border-blue-500', 'bg-blue-50');
-        }, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dragDropArea.addEventListener(eventName, () => {
-            dragDropArea.classList.remove('border-blue-500', 'bg-blue-50');
-        }, false);
-    });
-
     dragDropArea.addEventListener('drop', (e) => {
+        e.preventDefault(); e.stopPropagation();
         handleFiles(e.dataTransfer.files);
-    }, false);
+    });
 
+    ['dragenter', 'dragover', 'dragleave'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, (e) => {
+            e.preventDefault(); e.stopPropagation();
+        });
+    });
+    
     fileInput.addEventListener('change', (e) => {
         handleFiles(e.target.files);
     });
+
+    // Panggil updateFileInput sekali lagi sebelum submit untuk jaminan
+    if(form) {
+        form.addEventListener('submit', function() {
+            updateFileInput();
+        });
+    }
 });
 </script>
 @endpush
