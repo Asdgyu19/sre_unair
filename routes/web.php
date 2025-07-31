@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\MerchandiseController;
 use App\Http\Controllers\ProjectController;
 use App\Models\BlogPost;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\User\EventController as UserEventController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Http\Controllers\Admin\UsersController;
 */
 Route::get('/', fn () => view('home'))->name('home');
 Route::get('/about', fn () => view('about'))->name('about');
-Route::get('/events', fn () => view('events'))->name('events');
+Route::get('/events', [UserEventController::class, 'index'])->name('events');
 Route::get('/projects', [ProjectController::class, 'show'])->name('projects');
 Route::get('/education', fn () => view('education'))->name('education');
 Route::get('/shop', [MerchendiseController::class, 'shop'])->name('shop');
@@ -35,10 +37,7 @@ Route::get('/blog', fn () => view('blog', [
 Route::get('/posts/{post:slug}', fn (BlogPost $post) => view('post', [
     'title' => 'Single Post',
     'post' => $post,
-]));
-
-Route::get('/events', [EventController::class, 'frontend'])->name('events');
-
+]))->name('posts.show');
 
 /*
 |--------------------------------------------------------------------------
