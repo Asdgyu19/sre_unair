@@ -23,7 +23,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('admin.blog.update', $post->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.blog.update', $post) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -77,9 +77,9 @@
 
             <div class="mt-6">
                 <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
-                @if ($post->image)
+                @if ($post->featured_image)
                     <div class="mb-4">
-                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-64 rounded-lg shadow-sm border border-gray-200">
+                        <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-64 rounded-lg shadow-sm border border-gray-200">
                     </div>
                 @else
                     <p class="text-gray-500 text-sm mb-4">No image currently uploaded.</p>

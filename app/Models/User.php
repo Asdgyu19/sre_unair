@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'profile_photo',
     ];
 
     /**
@@ -61,11 +62,27 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if user is BOD or BOE
+     * Check if user is BOEND
      */
-    public function isBodBoe(): bool
+    public function isBoend(): bool
     {
-        return $this->role === 'BodBoe'; // Adjust the condition based on your application's role structure
+        return $this->role === 'boend';
+    }
+
+    /**
+     * Check if user has admin panel access (admin or boend)
+     */
+    public function hasAdminAccess(): bool
+    {
+        return in_array($this->role, ['admin', 'boend']);
+    }
+
+    /**
+     * Check if user can manage users (super admin only)
+     */
+    public function canManageUsers(): bool
+    {
+        return $this->role === 'admin';
     }
 }
 

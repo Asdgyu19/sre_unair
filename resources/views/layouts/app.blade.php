@@ -90,11 +90,12 @@
             transition: all 0.3s ease;
         }
         .login-button {
-            color: #0E9671;
-            border: 1px solid #0E9671;
+            background-color: #0E9671;
+            color: white;
         }
         .login-button:hover {
-            background-color: rgba(14, 150, 113, 0.1);
+            background-color: #0c8566;
+            transform: translateY(-1px);
         }
         .register-button {
             background-color: #0E9671;
@@ -102,8 +103,7 @@
         }
         .register-button:hover {
             background-color: #0c8566;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-1px);
         }
         /* Mobile menu styles */
         .mobile-menu {
@@ -123,10 +123,6 @@
                     <img class="h-10 w-auto transition-transform duration-300 group-hover:scale-110" 
                          src="{{ asset('/assets/images/logo.png') }}" 
                          alt="SRE UNAIR Logo">
-                    <div class="ml-3">
-                        <span class="text-xl font-bold text-[#0E9671] tracking-tight">SRE</span>
-                        <span class="text-sm font-medium text-gray-600 block -mt-1">UNAIR</span>
-                    </div>
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -139,28 +135,107 @@
                     <a href="{{ route('blog') }}" class="nav-item text-sm font-medium text-gray-700">Blog</a>
                     <a href="{{ route('merchandise') }}" class="nav-item text-sm font-medium text-gray-700">Merchandise</a>
                     
-                    {{-- @if (Route::has('login'))
+                    @if (Route::has('login.form'))
                         <div class="ml-4 flex items-center space-x-3">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="auth-button register-button text-sm font-medium">
-                                    Dashboard
-                                </a>
+                                <!-- Profile Dropdown -->
+                                <div class="relative" x-data="{ open: false }">
+                                    <button @click="open = !open" class="flex items-center space-x-2 p-1 rounded-full hover:bg-gray-100 transition-colors duration-200">
+                                        @if(auth()->user()->profile_photo)
+                                            <img class="h-8 w-8 rounded-full object-cover" src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="{{ auth()->user()->name }}">
+                                        @else
+                                            <div class="h-8 w-8 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white text-sm font-medium">
+                                                {{ substr(auth()->user()->name, 0, 1) }}
+                                            </div>
+                                        @endif
+                                        <span class="text-sm font-medium text-gray-700">{{ auth()->user()->name }}</span>
+                                        <svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    
+                                    <!-- Dropdown Menu -->
+                                    <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                                        <a href="{{ route('profile.show') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                            <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                            </svg>
+                                            My Profile
+                                        </a>
+                                        @if(auth()->user()->hasAdminAccess())
+                                            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                                <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                                </svg>
+                                                Admin Panel
+                                            </a>
+                                        @endif
+                                        <div class="border-t border-gray-100 my-1"></div>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="flex items-center w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
+                                                <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                                </svg>
+                                                Logout
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             @else
-                                <a href="{{ route('login') }}" class="auth-button login-button text-sm font-medium">
+                                <a href="{{ route('login.form') }}" class="auth-button login-button text-sm font-medium">
                                     Log in
                                 </a>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="auth-button register-button text-sm font-medium">
-                                        Register
-                                    </a>
-                                @endif
                             @endauth
                         </div>
-                    @endif --}}
+                    @endif
                 </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="flex items-center md:hidden">
+                <!-- Mobile Menu Button & Profile -->
+                <div class="flex items-center space-x-3 md:hidden">
+                    @auth
+                        <!-- Mobile Profile Icon -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="flex items-center p-1 rounded-full hover:bg-gray-100 transition-colors duration-200">
+                                @if(auth()->user()->profile_photo)
+                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ asset('storage/' . auth()->user()->profile_photo) }}" alt="{{ auth()->user()->name }}">
+                                @else
+                                    <div class="h-8 w-8 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white text-sm font-medium">
+                                        {{ substr(auth()->user()->name, 0, 1) }}
+                                    </div>
+                                @endif
+                            </button>
+                            
+                            <!-- Mobile Profile Dropdown -->
+                            <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                                <a href="{{ route('profile.show') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                    <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                    My Profile
+                                </a>
+                                @if(auth()->user()->hasAdminAccess())
+                                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">
+                                        <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                        </svg>
+                                        Admin Panel
+                                    </a>
+                                @endif
+                                <div class="border-t border-gray-100 my-1"></div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="flex items-center w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200">
+                                        <svg class="h-4 w-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                        </svg>
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @endauth
+                    
                     <button type="button" id="mobile-menu-button" class="p-2 rounded-full text-gray-500 hover:text-[#0E9671] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0E9671]" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -185,35 +260,17 @@
                 <a href="{{ route('blog') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Blog</a>
                 <a href="{{ route('merchandise') }}" class="block px-4 py-2 text-base font-medium text-gray-700 hover:text-[#0E9671] hover:bg-[#0E9671]/10 rounded-lg transition-colors duration-200">Merchandise</a>
             
-                {{-- <div class="pt-4 mt-2 border-t border-gray-200">
-                    @if (Route::has('login'))
+                <div class="pt-4 mt-2 border-t border-gray-200">
+                    @if (Route::has('login.form'))
                         <div class="flex flex-col space-y-3 px-4 py-2">
-                            @auth
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-10 w-10 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}">
-                                    </div>
-                                    <div class="ml-3">
-                                        <div class="text-base font-medium text-gray-800">{{ auth()->user()->name }}</div>
-                                        <div class="text-sm font-medium text-gray-500">{{ auth()->user()->email }}</div>
-                                    </div>
-                                </div>
-                                <a href="{{ url('/dashboard') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-white bg-[#0E9671] rounded-lg hover:bg-[#0c8566] shadow-md transition-all duration-300">
-                                    Dashboard
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-[#0E9671] border border-[#0E9671] rounded-lg hover:bg-[#0E9671]/10 transition-colors duration-300">
+                            @guest
+                                <a href="{{ route('login.form') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-white bg-[#0E9671] rounded-lg hover:bg-[#0c8566] shadow-md transition-all duration-300">
                                     Log in
                                 </a>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="w-full px-4 py-2 text-center text-sm font-medium text-white bg-[#0E9671] rounded-lg hover:bg-[#0c8566] shadow-md transition-all duration-300">
-                                        Register
-                                    </a>
-                                @endif
-                            @endauth
+                            @endguest
                         </div>
                     @endif
-                </div> --}}
+                </div>
             </div>
         </div>
     </header>

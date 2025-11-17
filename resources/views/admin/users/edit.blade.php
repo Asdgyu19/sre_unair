@@ -130,7 +130,7 @@
                                 >
                                     <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>👤 User</option>
                                     <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>⚡ Admin</option>
-                                    <option value="BodBoe" {{ old('role', $user->role) == 'BodBoe' ? 'selected' : '' }}>👑 BodBoe</option>
+                                    <option value="boend" {{ old('role', $user->role) == 'boend' ? 'selected' : '' }}>👑 BOEND</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

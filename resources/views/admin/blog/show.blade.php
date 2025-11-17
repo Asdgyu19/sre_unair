@@ -20,9 +20,9 @@
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         {{-- Featured Image --}}
-        @if ($post->image)
+        @if ($post->featured_image)
             <div class="w-full h-80 overflow-hidden bg-gray-100 flex items-center justify-center">
-                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
             </div>
         @else
             <div class="w-full h-80 bg-gray-100 flex items-center justify-center">
@@ -74,14 +74,14 @@
             @endif
 
             <div class="mt-8 flex justify-end space-x-3">
-                <a href="{{ route('admin.blog.edit', $post->id) }}"
+                <a href="{{ route('admin.blog.edit', $post) }}"
                    class="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                     </svg>
                     Edit Post
                 </a>
-                <form action="{{ route('admin.blog.destroy', $post->id) }}" method="POST" 
+                <form action="{{ route('admin.blog.destroy', $post) }}" method="POST" 
                       onsubmit="return confirm('Are you sure you want to delete this blog post?');" class="inline">
                     @csrf
                     @method('DELETE')

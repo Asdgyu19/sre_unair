@@ -63,8 +63,10 @@ class EventController extends Controller
 }
 
 
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
+        $event = Event::findOrFail($id);
+        
         $validated = $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
@@ -75,11 +77,11 @@ class EventController extends Controller
             
         ]);
 
-        if ($request->hasFile('featured_image')) {
-            if ($event->featured_image) {
-                Storage::disk('public')->delete($event->featured_image);
+        if ($request->hasFile('image')) {
+            if ($event->image) {
+                Storage::disk('public')->delete($event->image);
             }
-            $validated['featured_image'] = $request->file('featured_image')->store('events', 'public');
+            $validated['image'] = $request->file('image')->store('events', 'public');
         }
 
         $event->update($validated);
@@ -87,10 +89,12 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
     }
 
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        if ($event->featured_image) {
-            Storage::disk('public')->delete($event->featured_image);
+        $event = Event::findOrFail($id);
+        
+        if ($event->image) {
+            Storage::disk('public')->delete($event->image);
         }
 
         $event->delete();

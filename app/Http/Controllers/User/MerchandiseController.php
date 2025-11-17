@@ -8,7 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MerchendiseController extends Controller
+class MerchandiseController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,7 +27,7 @@ class MerchendiseController extends Controller
      */
     public function index()
     {
-        $merchandise = Merchandise::where('status', 'available')
+        $merchandise = Merchandise::where('status', 'active')
             ->where('stock', '>', 0)
             ->latest()
             ->paginate(12);
@@ -37,7 +37,7 @@ class MerchendiseController extends Controller
 
     public function publicIndex()
     {
-        $merchandise = Merchandise::where('status', 'available')
+        $merchandise = Merchandise::where('status', 'active')
             ->where('stock', '>', 0)
             ->latest()
             ->paginate(4);
@@ -47,7 +47,7 @@ class MerchendiseController extends Controller
 
     public function shop()
     {
-        $merchandise = Merchandise::where('status', 'available')
+        $merchandise = Merchandise::where('status', 'active')
             ->where('stock', '>', 0)
             ->latest()
             ->paginate(8); // <= paginate 8 item per halaman

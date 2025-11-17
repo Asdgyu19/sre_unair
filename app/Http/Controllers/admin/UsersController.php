@@ -30,7 +30,7 @@ class UsersController extends Controller
             'name' => ['required', 'string', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:40', 'unique:users'],
             'password' => ['required', 'string', 'confirmed', Password::min(8)],
-            'role' => ['required', Rule::in(['admin', 'user', 'BodBoe'])], // Sesuaikan dengan role Anda
+            'role' => ['required', Rule::in(['admin', 'user', 'boend'])],
         ]);
 
         User::create([
@@ -53,7 +53,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:60'],
             'email' => ['required', 'string', 'email', 'max:40', Rule::unique('users')->ignore($user->id)],
-            'role' => ['required', Rule::in(['admin', 'user', 'BodBoe'])],
+            'role' => ['required', Rule::in(['admin', 'user', 'boend'])],
             // Password bersifat opsional, hanya divalidasi jika diisi
             'password' => ['nullable', 'string', 'confirmed', Password::min(8)],
         ]);

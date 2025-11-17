@@ -18,7 +18,7 @@ class BlogPost extends Model
         'content',
         'user_id', // Penting: pastikan user_id ada di fillable
         'category_id', // Pastikan category_id ada jika digunakan
-        'image', // Pastikan 'image' atau 'featured_image' ada di fillable
+        'featured_image', // Menggunakan featured_image sesuai dengan migration
         'status',
         'published_at',
     ];

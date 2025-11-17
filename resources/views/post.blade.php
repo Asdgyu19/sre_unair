@@ -8,7 +8,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6 md:p-10">
             <!-- Optional Image -->
-            <img src="{{ asset($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded-lg mb-6">
+            <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded-lg mb-6">
 php artisan db:seed
             <!-- Date -->
             <div class="flex items-center text-sm text-gray-500 mb-4">

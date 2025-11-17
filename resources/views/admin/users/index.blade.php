@@ -56,8 +56,8 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">BodBoe</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ $users->where('role', 'BodBoe')->count() }}</p>
+                        <p class="text-sm font-medium text-gray-600">BOEND</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ $users->where('role', 'boend')->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-600">Regular Users</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ $users->whereNotIn('role', ['admin', 'BodBoe'])->count() }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ $users->whereNotIn('role', ['admin', 'boend'])->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                         <option value="">All Roles</option>
                         <option value="admin">Administrator</option>
-                        <option value="BodBoe">BodBoe</option>
+                        <option value="boend">BOEND</option>
                         <option value="user">User</option>
                     </select>
                     <button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200">

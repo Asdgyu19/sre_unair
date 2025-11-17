@@ -80,10 +80,12 @@ class UserController
             case 'admin':
                 return redirect()->route('admin.dashboard')->with('success', 'Login berhasil! Selamat datang, Admin.');
             case 'boend':
-                return redirect()->route('boend.dashboard')->with('success', 'Login berhasil! Selamat datang.');
+                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil! Selamat datang, BOEND.');
+            case 'bod_boe':
+                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil! Selamat datang.');
             case 'user':
             default:
-                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');
+                return redirect()->route('home')->with('success', 'Login berhasil!');
         }
     }
 

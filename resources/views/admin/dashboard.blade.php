@@ -11,7 +11,17 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     {{-- Pastikan Auth::user() tidak null sebelum mengakses name --}}
-                    <span class="text-gray-700">Welcome, {{ Auth::user()->name ?? 'Guest' }}</span>
+                    <div class="text-right">
+                        <span class="text-gray-700 block">Welcome, {{ Auth::user()->name ?? 'Guest' }}</span>
+                        <span class="text-sm text-gray-500">
+                            Role: <span class="font-semibold 
+                                @if(Auth::user()->role === 'admin') text-blue-600 
+                                @elseif(Auth::user()->role === 'boend') text-green-600 
+                                @else text-gray-600 @endif">
+                                {{ ucfirst(Auth::user()->role ?? 'User') }}
+                            </span>
+                        </span>
+                    </div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors">
@@ -28,6 +38,28 @@
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
                 {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Role-based Access Info -->
+        @if(auth()->user()->role === 'boend')
+            <div class="bg-blue-50 border border-blue-200 text-blue-800 px-4 py-3 rounded mb-6">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    <div>
+                        <strong>BOEND Access:</strong> Anda dapat mengelola Events, Projects, Blog, dan Merchandise. 
+                        Akses User Management hanya tersedia untuk Super Admin.
+                    </div>
+                </div>
+            </div>
+        @elseif(auth()->user()->role === 'admin')
+            <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded mb-6">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <div>
+                        <strong>Super Admin Access:</strong> Anda memiliki akses penuh ke semua fitur termasuk User Management.
+                    </div>
+                </div>
             </div>
         @endif
 

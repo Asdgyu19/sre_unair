@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\User\MerchendiseController;
+use App\Http\Controllers\User\MerchandiseController as UserMerchandiseController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\MerchandiseController;
@@ -23,21 +23,27 @@ Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/events', [UserEventController::class, 'index'])->name('events');
 Route::get('/projects', [ProjectController::class, 'show'])->name('projects');
 Route::get('/education', fn () => view('education'))->name('education');
-Route::get('/shop', [MerchendiseController::class, 'shop'])->name('shop');
+Route::get('/shop', [UserMerchandiseController::class, 'shop'])->name('shop');
 // Route::get('/merchandise', fn () => view('merchandise'))->name('merchandise');
-Route::get('/merchandise', [MerchendiseController::class, 'publicIndex'])->name('merchandise');
+Route::get('/merchandise', [UserMerchandiseController::class, 'publicIndex'])->name('merchandise');
 
-// Route::get('/merchandise', [MerchandiseController::class, 'publicIndex'])->name('merchandise');
 
 Route::get('/blog', fn () => view('blog', [
     'title' => 'Blog',
-    'posts' => BlogPost::all(),
+    'posts' => BlogPost::where('status', 'published')->latest()->get(),
 ]))->name('blog');
 
-Route::get('/posts/{post:slug}', fn (BlogPost $post) => view('post', [
-    'title' => 'Single Post',
-    'post' => $post,
-]))->name('posts.show');
+Route::get('/posts/{post:slug}', function (BlogPost $post) {
+    // Only allow published posts
+    if ($post->status !== 'published') {
+        abort(404);
+    }
+    
+    return view('post', [
+        'title' => 'Single Post',
+        'post' => $post,
+    ]);
+})->name('posts.show');
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +58,18 @@ Route::middleware('web')->group(function () {
     Route::post('/login', [UserController::class, 'login'])->name('login');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+});
+
+/*
+|--------------------------------------------------------------------------
+| User Profile Routes (Authenticated Users Only)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/photo', [\App\Http\Controllers\ProfileController::class, 'deletePhoto'])->name('profile.delete-photo');
 });
 
 /*
@@ -110,28 +128,32 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
 
-        /*
-    |--------------------------------------------------------------------------
-    | User Management
-    |--------------------------------------------------------------------------
-    */
-    Route::get('/user', [UsersController::class, 'index'])->name('user.index');
-    Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
-    Route::post('/user', [UsersController::class, 'store'])->name('user.store');
-    Route::get('/user/{user}/edit', [UsersController::class, 'edit'])->name('user.edit');
-    Route::put('/user/{user}', [UsersController::class, 'update'])->name('user.update');
-    Route::delete('/user/{user}', [UsersController::class, 'destroy'])->name('user.destroy');
-
     /*
     |--------------------------------------------------------------------------
     | Blog Management
     |--------------------------------------------------------------------------
     */
- Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
+    Route::get('/blog', [BlogPostController::class, 'index'])->name('blog.index');
     Route::get('/blog/create', [BlogPostController::class, 'create'])->name('blog.create');
     Route::post('/blog', [BlogPostController::class, 'store'])->name('blog.store');
     Route::get('/blog/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
     Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('blog.edit');
     Route::put('/blog/{blogPost}', [BlogPostController::class, 'update'])->name('blog.update');
     Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy'])->name('blog.destroy');
+
+        /*
+    |--------------------------------------------------------------------------
+    | User Management (Super Admin Only)
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware('superadmin')->group(function () {
+        Route::get('/user', [UsersController::class, 'index'])->name('user.index');
+        Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
+        Route::post('/user', [UsersController::class, 'store'])->name('user.store');
+        Route::get('/user/{user}/edit', [UsersController::class, 'edit'])->name('user.edit');
+        Route::put('/user/{user}', [UsersController::class, 'update'])->name('user.update');
+        Route::delete('/user/{user}', [UsersController::class, 'destroy'])->name('user.destroy');
+    });
+
+
 });

@@ -87,8 +87,8 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
-                                        @if ($post->image)
-                                            <img class="h-10 w-10 rounded-lg object-cover" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                                        @if ($post->featured_image)
+                                            <img class="h-10 w-10 rounded-lg object-cover" src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}">
                                         @else
                                             <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center text-gray-600 font-semibold text-sm">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v10m-3-10l-4 4m0 0l-4-4m4 4v7"/></svg>
@@ -124,7 +124,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right">
                                 <div class="flex items-center justify-end space-x-2">
-                                    <a href="{{ route('admin.blog.show', $post->id) }}"
+                                    <a href="{{ route('admin.blog.show', $post) }}"
                                        class="inline-flex items-center px-3 py-1.5 bg-green-100 hover:bg-green-200 text-green-700 text-xs font-medium rounded-lg transition-colors duration-200">
                                         <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -133,7 +133,7 @@
                                         View
                                     </a>
                                     
-                                    <a href="{{ route('admin.blog.edit', $post->id) }}"
+                                    <a href="{{ route('admin.blog.edit', $post) }}"
                                        class="inline-flex items-center px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-medium rounded-lg transition-colors duration-200">
                                         <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
@@ -141,7 +141,7 @@
                                         Edit
                                     </a>
                                     
-                                    <form action="{{ route('admin.blog.destroy', $post->id) }}" method="POST" 
+                                    <form action="{{ route('admin.blog.destroy', $post) }}" method="POST" 
                                           onsubmit="return confirm('Are you sure you want to delete this blog post?');" class="inline">
                                         @csrf
                                         @method('DELETE')

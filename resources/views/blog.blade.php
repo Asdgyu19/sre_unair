@@ -21,7 +21,7 @@
                     class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 flex flex-col">
                     {{-- Post Image --}}
                     <div class="relative h-64 w-full overflow-hidden">
-                        <img src="{{ $post->image ? asset('storage/' . $post->image) : 'https://via.placeholder.com/400x300.png?text=No+Blog+Image' }}"
+                        <img src="{{ $post->featured_image ? asset('storage/' . $post->featured_image) : 'https://via.placeholder.com/400x300.png?text=No+Blog+Image' }}"
                             alt="{{ $post->title }}"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
 

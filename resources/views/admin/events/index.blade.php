@@ -104,8 +104,8 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
-                                            @if ($event->featured_image)
-                                                <img class="h-10 w-10 rounded-lg object-cover" src="{{ asset('storage/' . $event->featured_image) }}" alt="{{ $event->title }}">
+                                            @if ($event->image)
+                                                <img class="h-10 w-10 rounded-lg object-cover" src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}">
                                             @else
                                                 <div class="h-10 w-10 rounded-lg bg-gray-200 flex items-center justify-center text-gray-600 font-semibold text-sm">
                                                     {{ substr($event->title, 0, 2) }}

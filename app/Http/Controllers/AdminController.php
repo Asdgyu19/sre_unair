@@ -24,7 +24,7 @@ class AdminController extends Controller
             'recentEvents' => Event::latest()->take(5)->get(),
             'recentMerchandise' => Merchandise::latest()->take(5)->get(),
             'recentProjects' => Project::latest()->take(5)->get(),
-            'recentPosts' => BlogPost::latest()->take(5)->get(),
+            'recentPosts' => BlogPost::with('user')->latest()->take(5)->get(),
         ];
 
         return view('admin.dashboard', $data);
@@ -220,11 +220,11 @@ class AdminController extends Controller
         ]);
 
         $post = new BlogPost();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->excerpt = $request->excerpt ?? Str::limit(strip_tags($request->content), 150);
-        $post->slug = Str::slug($request->title);
-        $post->status = $request->status;
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->excerpt = $request->input('excerpt') ?? Str::limit(strip_tags($request->input('content')), 150);
+        $post->slug = Str::slug($request->input('title'));
+        $post->status = $request->input('status');
         // $post->author_id = auth()->id();
 
         if ($request->status === 'published') {

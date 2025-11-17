@@ -38,7 +38,7 @@ class MerchandiseController extends Controller
             'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:available,unavailable',
+            'status' => 'required|in:active,inactive',
         ]);
 
         $merch = new Merchandise();
@@ -46,7 +46,7 @@ class MerchandiseController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('merchandise', 'public');
-            $merch->image = 'storage/' . $path;
+            $merch->image = $path;  // Simpan tanpa 'storage/' prefix
         }
 
         $merch->save();
@@ -82,7 +82,7 @@ class MerchandiseController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:255',
-            'status' => 'required|in:available,unavailable',
+            'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -91,10 +91,10 @@ class MerchandiseController extends Controller
 
         if ($request->hasFile('image')) {
             if ($merch->image) {
-                Storage::disk('public')->delete(str_replace('storage/', '', $merch->image));
+                Storage::disk('public')->delete($merch->image);
             }
             $path = $request->file('image')->store('merchandise', 'public');
-            $merch->image = 'storage/' . $path;
+            $merch->image = $path;  // Simpan tanpa 'storage/' prefix
         }
 
         $merch->save();
@@ -110,7 +110,7 @@ class MerchandiseController extends Controller
         $merch = Merchandise::findOrFail($id);
 
         if ($merch->image) {
-            Storage::disk('public')->delete(str_replace('storage/', '', $merch->image));
+            Storage::disk('public')->delete($merch->image);
         }
 
         $merch->delete();
